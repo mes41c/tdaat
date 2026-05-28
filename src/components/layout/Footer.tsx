@@ -67,6 +67,47 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Social Media */}
+          <div>
+            <h3 className="font-[var(--font-heading)] text-sm font-semibold tracking-wide text-foreground">
+              Sosyal Medya
+            </h3>
+            <div className="mt-3 flex flex-col gap-2">
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-4 w-4" />
+                Twitter
+              </a>
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-4 w-4" />
+                Instagram
+              </a>
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </a>
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                aria-label="GitHub"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+            </div>
+          </div>
+
           {/* Contact */}
           <div>
             <h3 className="font-[var(--font-heading)] text-sm font-semibold tracking-wide text-foreground">
