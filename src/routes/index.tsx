@@ -86,10 +86,39 @@ function Index() {
             height={1080}
             loading="eager"
           />
-          
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-7xl items-center px-4 py-24 sm:px-6 lg:px-8" />
+        <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-7xl items-center px-4 py-24 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+              <Sparkles className="h-4 w-4" />
+              Öğren · Üret · Büyü
+            </div>
+            <h1 className="mt-6 font-[var(--font-heading)] text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              Türk Dünyası Akademik
+              <span className="block text-primary">
+                <span className="inline-flex items-center gap-3">
+                  ARAŞTIRMALAR
+                  <span className="inline-block h-4 w-8 rounded bg-primary" />
+                  TOPLULUĞU
+                  <span className="inline-block h-4 w-8 rounded bg-primary" />
+                </span>
+              </span>
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              Üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda birlikte güçlendikleri bir topluluk.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button size="lg" asChild>
+                <Link to="/events">Etkinlikleri Keşfet</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/about">Hakkımızda</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Features */}
