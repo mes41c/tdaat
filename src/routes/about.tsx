@@ -4,20 +4,20 @@ import { Target, Heart, Eye, BookOpen } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Hakkımızda — lovelabdan" },
+      { title: "Hakkımızda — TDAAT" },
       {
         name: "description",
         content:
-          "lovelabdan hakkında: Misyonumuz, vizyonumuz ve topluluğumuzun hikayesi.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu hakkında: Misyonumuz, vizyonumuz ve topluluğumuzun hikayesi.",
       },
       {
         property: "og:title",
-        content: "Hakkımızda — lovelabdan",
+        content: "Hakkımızda — TDAAT",
       },
       {
         property: "og:description",
         content:
-          "lovelabdan hakkında: Misyonumuz, vizyonumuz ve topluluğumuzun hikayesi.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu hakkında: Misyonumuz, vizyonumuz ve topluluğumuzun hikayesi.",
       },
     ],
   }),
@@ -34,7 +34,7 @@ function AboutPage() {
             Hakkımızda
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            lovelabdan, 2023 yılında bir grup üniversite öğrencisi tarafından kurulan,
+            Türk Dünyası Akademik Araştırmalar Topluluğu, 2023 yılında bir grup üniversite öğrencisi tarafından kurulan,
             öğrencilerin bir araya gelerek öğrendiklerini paylaştığı, birlikte projeler
             ürettiği ve kariyerlerine değer katan bir topluluktur.
           </p>
@@ -52,7 +52,7 @@ function AboutPage() {
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 Üniversitede geçen sıradan bir günde, ders arasında bir grup arkadaş
                 “neden öğrenciler olarak kendi başımıza bir şeyler yapamıyoruz?”
-                diye sormaya başladı. Bu soru, lovelabdan'ın ilk tohumu oldu.
+                diye sormaya başladı. Bu soru, TDAAT'ın ilk tohumu oldu.
               </p>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 Kısa sürede küçük workshoplar, ardından ilk hackathonumuz ve şimdi

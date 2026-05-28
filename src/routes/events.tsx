@@ -6,20 +6,20 @@ import { Badge } from "@/components/ui/badge";
 export const Route = createFileRoute("/events")({
   head: () => ({
     meta: [
-      { title: "Etkinlikler — lovelabdan" },
+      { title: "Etkinlikler — TDAAT" },
       {
         name: "description",
         content:
-          "lovelabdan topluluğunun yaklaşan ve geçmiş etkinlikleri: eğitimler, hackathonlar, network günleri.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu'nun yaklaşan ve geçmiş etkinlikleri: eğitimler, hackathonlar, network günleri.",
       },
       {
         property: "og:title",
-        content: "Etkinlikler — lovelabdan",
+        content: "Etkinlikler — TDAAT",
       },
       {
         property: "og:description",
         content:
-          "lovelabdan topluluğunun yaklaşan ve geçmiş etkinlikleri: eğitimler, hackathonlar, network günleri.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu'nun yaklaşan ve geçmiş etkinlikleri: eğitimler, hackathonlar, network günleri.",
       },
     ],
   }),

@@ -9,20 +9,20 @@ import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "İletişim — lovelabdan" },
+      { title: "İletişim — TDAAT" },
       {
         name: "description",
         content:
-          "lovelabdan topluluğuyla iletişime geçin. Sorularınız, önerileriniz ve işbirliği teklifleriniz için buradayız.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu ile iletişime geçin. Sorularınız, önerileriniz ve işbirliği teklifleriniz için buradayız.",
       },
       {
         property: "og:title",
-        content: "İletişim — lovelabdan",
+        content: "İletişim — TDAAT",
       },
       {
         property: "og:description",
         content:
-          "lovelabdan topluluğuyla iletişime geçin. Sorularınız, önerileriniz ve işbirliği teklifleriniz için buradayız.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu ile iletişime geçin. Sorularınız, önerileriniz ve işbirliği teklifleriniz için buradayız.",
       },
     ],
   }),
@@ -75,7 +75,7 @@ function ContactPage() {
                     <h3 className="font-[var(--font-heading)] text-sm font-semibold text-foreground">
                       E-posta
                     </h3>
-                    <p className="text-sm text-muted-foreground">hello@lovelabdan.org</p>
+                    <p className="text-sm text-muted-foreground">hello@tdaat.org</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
