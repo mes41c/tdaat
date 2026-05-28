@@ -13,9 +13,11 @@ export function Footer() {
               to="/"
               className="flex items-center gap-2 font-[var(--font-heading)] text-xl font-bold tracking-tight text-foreground transition-colors hover:text-primary"
             >
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-bold">
-                T
-              </span>
+              <img
+                src={logo}
+                alt="TDAAT Logo"
+                className="h-8 w-auto object-contain"
+              />
               Türk Dünyası Akademik Araştırmalar Topluluğu
             </Link>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground leading-relaxed">
