@@ -4,20 +4,20 @@ import { Github, Linkedin, Twitter } from "lucide-react";
 export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
-      { title: "Ekibimiz — lovelabdan" },
+      { title: "Ekibimiz — TDAAT" },
       {
         name: "description",
         content:
-          "lovelabdan topluluğunun yönetim kurulu ve lider ekibiyle tanışın.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu'nun yönetim kurulu ve lider ekibiyle tanışın.",
       },
       {
         property: "og:title",
-        content: "Ekibimiz — lovelabdan",
+        content: "Ekibimiz — TDAAT",
       },
       {
         property: "og:description",
         content:
-          "lovelabdan topluluğunun yönetim kurulu ve lider ekibiyle tanışın.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu'nun yönetim kurulu ve lider ekibiyle tanışın.",
       },
     ],
   }),

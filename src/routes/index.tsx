@@ -6,20 +6,20 @@ import heroImg from "@/assets/hero.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "lovelabdan — Üniversite Öğrenci Topluluğu" },
+      { title: "Türk Dünyası Akademik Araştırmalar Topluluğu" },
       {
         name: "description",
         content:
-          "lovelabdan, üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda birlikte güçlendikleri bir topluluk.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu, üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda birlikte güçlendikleri bir topluluk.",
       },
       {
         property: "og:title",
-        content: "lovelabdan — Üniversite Öğrenci Topluluğu",
+        content: "Türk Dünyası Akademik Araştırmalar Topluluğu",
       },
       {
         property: "og:description",
         content:
-          "lovelabdan, üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda birlikte güçlendikleri bir topluluk.",
+          "Türk Dünyası Akademik Araştırmalar Topluluğu, üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda birlikte güçlendikleri bir topluluk.",
       },
     ],
   }),
@@ -80,7 +80,7 @@ function Index() {
         <div className="absolute inset-0 z-0">
           <img
             src={heroImg}
-            alt="lovelabdan topluluğu"
+            alt="Türk Dünyası Akademik Araştırmalar Topluluğu"
             className="h-full w-full object-cover"
             width={1920}
             height={1080}
@@ -96,11 +96,11 @@ function Index() {
               Üniversite Öğrenci Topluluğu
             </div>
             <h1 className="mt-6 font-[var(--font-heading)] text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Birlikte öğren, <br className="hidden sm:block" />
-              <span className="text-primary">birlikte üret.</span>
+              Türk Dünyası <br className="hidden sm:block" />
+              <span className="text-primary">Akademik Araştırmalar Topluluğu</span>
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              lovelabdan, üniversite öğrencilerinin öğrenme, üretme ve büyüme
+              Üniversite öğrencilerinin öğrenme, üretme ve büyüme
               yolculuğunda birlikte güçlendikleri bir topluluk.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -224,7 +224,7 @@ function Index() {
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base opacity-90">
             Fikirlerin var, projeler yapmak istiyorsun ama yanında bir ekip arıyorsun.
-            lovelabdan'da yerin hazır.
+            Topluluğumuzda yerin hazır.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button
