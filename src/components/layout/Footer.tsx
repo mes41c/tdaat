@@ -100,10 +100,10 @@ export function Footer() {
               <a
                 href="#"
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-                aria-label="GitHub"
+                aria-label="YouTube"
               >
-                <Github className="h-4 w-4" />
-                GitHub
+                <Youtube className="h-4 w-4" />
+                YouTube
               </a>
             </div>
           </div>
