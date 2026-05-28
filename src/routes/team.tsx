@@ -67,6 +67,13 @@ const team = [
     color: "bg-orange-100 text-orange-700",
     social: { linkedin: "#", twitter: "#" },
   },
+  {
+    name: "Meltem Turcan",
+    role: "Akademi Birimi",
+    bio: "3. sınıf halkla ilişkiler ve tanıtım. Akademik program ve içerik yönetimi.",
+    color: "bg-teal-100 text-teal-700",
+    social: { linkedin: "#", twitter: "#" },
+  },
 ];
 
 function TeamPage() {
