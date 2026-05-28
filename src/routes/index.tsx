@@ -96,12 +96,12 @@ function Index() {
               Üniversite Öğrenci Topluluğu
             </div>
             <h1 className="mt-6 font-[var(--font-heading)] text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              <span className="block">Türk Dünyası Akademik</span>
+              <span className="block">TÜRK DÜNYASI AKADEMİK</span>
               <span className="flex items-center gap-3">
-                <span className="text-primary">Araştırmalar</span>
+                <span className="text-primary">ARAŞTIRMALAR</span>
                 <span aria-hidden="true" className="h-[0.5em] self-center flex-1 bg-blue-400" />
               </span>
-              <span className="block text-primary">Topluluğu</span>
+              <span className="block text-primary">TOPLULUĞU</span>
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
               Üniversite öğrencilerinin öğrenme, üretme ve büyüme
