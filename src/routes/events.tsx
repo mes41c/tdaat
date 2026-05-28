@@ -29,7 +29,7 @@ export const Route = createFileRoute("/events")({
 const upcoming = [
   {
     title: "Makale Okuması",
-    date: "15 Aralık 2024",
+    date: "2 Ekim 2026",
     time: "14:00 - 17:00",
     location: "Kampüs Amfi",
     category: "Eğitim",
