@@ -95,13 +95,13 @@ function Index() {
               <Sparkles className="h-3.5 w-3.5" />
               Üniversite Öğrenci Topluluğu
             </div>
-            <h1 className="mt-6 font-[var(--font-heading)] text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 font-[var(--font-heading)] text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               <span className="block">TÜRK DÜNYASI AKADEMİK</span>
               <span className="flex items-center gap-3">
-                <span className="text-primary">ARAŞTIRMALAR</span>
+                <span className="text-white">ARAŞTIRMALAR</span>
                 <span aria-hidden="true" className="h-[1em] self-center flex-1 bg-[#00AFCA]" />
               </span>
-              <span className="flex items-center gap-3 text-primary">
+              <span className="flex items-center gap-3 text-white">
                 <span>TOPLULUĞU</span>
                 <span aria-hidden="true" className="h-[1em] self-center flex-1 bg-[#00AFCA]" />
               </span>
