@@ -67,7 +67,7 @@ const upcomingEvents = [
 
 const teamPreview = [
   { name: "Muharrem Turgut", role: "Başkan", initial: "MT" },
-  { name: "Can Özdemir", role: "Genel Sekreter", initial: "CÖ" },
+  { name: "Abdurrahman Gülle", role: "Başkan Yardımcısı", initial: "AG" },
   { name: "Zeynep Kaya", role: "Etkinlik Koordinatörü", initial: "ZK" },
   { name: "Burak Şen", role: "Teknik Lider", initial: "BŞ" },
 ];
