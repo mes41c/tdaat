@@ -122,7 +122,14 @@ export function Footer() {
               İletişim
             </h3>
             <ul className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground">
-              <li>egeturkduyasitoplulugu@gmail.com</li>
+              <li>
+                <a
+                  href="mailto:egeturkduyasitoplulugu@gmail.com"
+                  className="transition-colors hover:text-primary"
+                >
+                  egeturkduyasitoplulugu@gmail.com
+                </a>
+              </li>
               <li>İzmir, Türkiye</li>
             </ul>
           </div>
