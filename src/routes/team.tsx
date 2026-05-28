@@ -33,8 +33,8 @@ const team = [
     social: { linkedin: "#", twitter: "#" },
   },
   {
-    name: "Can Özdemir",
-    role: "Genel Sekreter",
+    name: "Abdurrahman Gülle",
+    role: "Başkan Yardımcısı",
     bio: "3. sınıf endüstri mühendisliği. Operasyon ve organizasyon uzmanı.",
     color: "bg-blue-100 text-blue-700",
     social: { linkedin: "#", github: "#" },
