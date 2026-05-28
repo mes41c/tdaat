@@ -26,7 +26,7 @@ export const Route = createFileRoute("/team")({
 
 const team = [
   {
-    name: "Elif Yılmaz",
+    name: "Muharrem Turgut",
     role: "Başkan",
     bio: "4. sınıf bilgisayar mühendisliği öğrencisi. Yapay zeka ve topluluk yönetimi tutkunu.",
     color: "bg-rose-100 text-rose-700",
