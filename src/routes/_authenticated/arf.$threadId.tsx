@@ -38,7 +38,8 @@ import {
   PromptInputFooter,
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
-import { Plus, Trash2, LogOut, Menu, X, MoreVertical } from "lucide-react";
+import { Plus, Trash2, LogOut, Menu, X, MoreVertical, Mic, Volume2, VolumeX, Square } from "lucide-react";
+import { useVoiceChat } from "@/hooks/useVoiceChat";
 import arfAvatar from "@/assets/arf-avatar.png";
 import { toast } from "sonner";
 
