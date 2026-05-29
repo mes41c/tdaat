@@ -1,7 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import type { UIMessage } from "ai";
 
 export const listArfThreads = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
@@ -39,7 +38,7 @@ export const getArfThreadMessages = createServerFn({ method: "POST" })
       .eq("thread_id", data.threadId)
       .order("created_at", { ascending: true });
     if (error) throw new Error(error.message);
-    return { messages: (rows ?? []).map((r) => r.message) as unknown as UIMessage[] };
+    return { messages: JSON.parse(JSON.stringify(rows ?? [])).map((r: { message: unknown }) => r.message) as unknown[] };
   });
 
 export const deleteArfThread = createServerFn({ method: "POST" })
