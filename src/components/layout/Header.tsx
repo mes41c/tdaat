@@ -43,7 +43,14 @@ export function Header() {
               activeProps={{ className: "bg-primary/10 text-primary font-medium" }}
               className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              {link.label}
+              {link.to === "/arf" ? (
+                <span className="flex items-center gap-1.5">
+                  Arf
+                  <img src={arfLogo} alt="Arf" className="h-4 w-4 rounded-full object-cover" />
+                </span>
+              ) : (
+                link.label
+              )}
             </Link>
           ))}
         </nav>
