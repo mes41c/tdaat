@@ -105,6 +105,21 @@ export function ArfWidget() {
 
   const isLoading = status === "submitted" || status === "streaming";
 
+  const voice = useVoiceChat();
+  const lastSpokenIdRef = useRef<string | null>(null);
+
+  // Auto-speak new assistant messages once streaming finishes
+  useEffect(() => {
+    if (!voice.voiceEnabled) return;
+    if (status !== "ready") return;
+    const last = messages[messages.length - 1];
+    if (!last || last.role !== "assistant") return;
+    if (lastSpokenIdRef.current === last.id) return;
+    lastSpokenIdRef.current = last.id;
+    const text = last.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
+    if (text.trim()) void voice.speak(text);
+  }, [messages, status, voice]);
+
   // Auto-scroll on new messages
   useEffect(() => {
     if (!scrollRef.current) return;
@@ -117,6 +132,18 @@ export function ArfWidget() {
     if (!text || isLoading || !threadId) return;
     setInput("");
     await sendMessage({ text });
+  };
+
+  const handleMicDown = () => {
+    if (!voice.sttSupported || isLoading || !threadId) return;
+    voice.stopSpeaking();
+    voice.startRecording((finalText) => {
+      if (!finalText) return;
+      void sendMessage({ text: finalText });
+    });
+  };
+  const handleMicUp = () => {
+    if (voice.isRecording) voice.stopRecording();
   };
 
   if (hidden) return null;
