@@ -90,7 +90,16 @@ export function ArfWidget() {
     id: threadId ?? "arf-widget-pending",
     messages: [] as UIMessage[],
     transport,
-    onError: (err) => toast.error(err.message || "Bir hata oldu"),
+    onError: (err) => {
+      const msg = err.message || "";
+      if (msg.includes("Thread not found") || msg.includes("404")) {
+        if (userId) localStorage.removeItem(`${STORAGE_KEY}:${userId}`);
+        setThreadId(null);
+        toast.error("Sohbet sıfırlandı, lütfen tekrar dene.");
+        return;
+      }
+      toast.error(msg || "Bir hata oldu");
+    },
   });
 
   const isLoading = status === "submitted" || status === "streaming";
