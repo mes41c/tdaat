@@ -105,6 +105,20 @@ function ArfChatPage() {
   const [input, setInput] = useState("");
   const isLoading = status === "submitted" || status === "streaming";
 
+  const voice = useVoiceChat();
+  const lastSpokenIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!voice.voiceEnabled) return;
+    if (status !== "ready") return;
+    const last = messages[messages.length - 1];
+    if (!last || last.role !== "assistant") return;
+    if (lastSpokenIdRef.current === last.id) return;
+    lastSpokenIdRef.current = last.id;
+    const text = last.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
+    if (text.trim()) void voice.speak(text);
+  }, [messages, status, voice]);
+
   const handleSubmit = async (
     _msg: unknown,
     e: React.FormEvent<HTMLFormElement>,
@@ -114,6 +128,17 @@ function ArfChatPage() {
     if (!text || isLoading) return;
     setInput("");
     await sendMessage({ text });
+  };
+
+  const handleMicDown = () => {
+    if (!voice.sttSupported || isLoading) return;
+    voice.stopSpeaking();
+    voice.startRecording((finalText) => {
+      if (finalText) void sendMessage({ text: finalText });
+    });
+  };
+  const handleMicUp = () => {
+    if (voice.isRecording) voice.stopRecording();
   };
 
   const handleNewThread = async () => {
