@@ -176,6 +176,21 @@ export function ArfWidget() {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => {
+                  if (voice.voiceEnabled) voice.stopSpeaking();
+                  voice.setVoiceEnabled(!voice.voiceEnabled);
+                }}
+                aria-label={voice.voiceEnabled ? "Sesli yanıtı kapat" : "Sesli yanıtı aç"}
+                title={voice.voiceEnabled ? "Sesli yanıtı kapat" : "Sesli yanıtı aç"}
+                className={`rounded-md p-1.5 hover:bg-accent hover:text-accent-foreground ${voice.voiceEnabled ? "text-primary" : "text-muted-foreground"}`}
+              >
+                {voice.voiceEnabled ? (
+                  <Volume2 className="h-4 w-4" />
+                ) : (
+                  <VolumeX className="h-4 w-4" />
+                )}
+              </button>
+              <button
+                onClick={() => {
                   setOpen(false);
                   navigate({ to: "/arf" });
                 }}
