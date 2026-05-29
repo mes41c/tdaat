@@ -14,6 +14,18 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+} from "@/components/ui/context-menu";
+import {
   Conversation,
   ConversationContent,
   ConversationScrollButton,
@@ -26,7 +38,7 @@ import {
   PromptInputFooter,
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
-import { Plus, Trash2, LogOut, Menu, X } from "lucide-react";
+import { Plus, Trash2, LogOut, Menu, X, MoreVertical } from "lucide-react";
 import arfAvatar from "@/assets/arf-avatar.png";
 import { toast } from "sonner";
 
