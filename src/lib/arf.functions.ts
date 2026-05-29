@@ -39,7 +39,7 @@ export const getArfThreadMessages = createServerFn({ method: "POST" })
       .eq("thread_id", data.threadId)
       .order("created_at", { ascending: true });
     if (error) throw new Error(error.message);
-    return (rows ?? []).map((r) => r.message as unknown as UIMessage);
+    return { messages: (rows ?? []).map((r) => r.message) as unknown as UIMessage[] };
   });
 
 export const deleteArfThread = createServerFn({ method: "POST" })

@@ -72,7 +72,7 @@ export const Route = createFileRoute("/api/chat")({
         const result = streamText({
           model,
           system: ARF_SYSTEM_PROMPT,
-          messages: convertToModelMessages(messages as UIMessage[]),
+          messages: await convertToModelMessages(messages as UIMessage[]),
         });
 
         return result.toUIMessageStreamResponse({
