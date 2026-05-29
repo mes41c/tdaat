@@ -44,16 +44,33 @@ export function ArfWidget() {
     if (!open || !userId || threadId) return;
     const key = `${STORAGE_KEY}:${userId}`;
     const existing = typeof window !== "undefined" ? localStorage.getItem(key) : null;
+
+    const createNew = () =>
+      createArfThread({})
+        .then((t) => {
+          localStorage.setItem(key, t.id);
+          setThreadId(t.id);
+        })
+        .catch((e) => toast.error(e.message || "Sohbet başlatılamadı"));
+
     if (existing) {
-      setThreadId(existing);
+      // Verify the stored thread still exists (it may have been deleted)
+      supabase
+        .from("arf_threads")
+        .select("id")
+        .eq("id", existing)
+        .maybeSingle()
+        .then(({ data }) => {
+          if (data?.id) {
+            setThreadId(data.id);
+          } else {
+            localStorage.removeItem(key);
+            createNew();
+          }
+        });
       return;
     }
-    createArfThread({})
-      .then((t) => {
-        localStorage.setItem(key, t.id);
-        setThreadId(t.id);
-      })
-      .catch((e) => toast.error(e.message || "Sohbet başlatılamadı"));
+    createNew();
   }, [open, userId, threadId]);
 
   const transport = useMemo(
@@ -73,7 +90,16 @@ export function ArfWidget() {
     id: threadId ?? "arf-widget-pending",
     messages: [] as UIMessage[],
     transport,
-    onError: (err) => toast.error(err.message || "Bir hata oldu"),
+    onError: (err) => {
+      const msg = err.message || "";
+      if (msg.includes("Thread not found") || msg.includes("404")) {
+        if (userId) localStorage.removeItem(`${STORAGE_KEY}:${userId}`);
+        setThreadId(null);
+        toast.error("Sohbet sıfırlandı, lütfen tekrar dene.");
+        return;
+      }
+      toast.error(msg || "Bir hata oldu");
+    },
   });
 
   const isLoading = status === "submitted" || status === "streaming";
