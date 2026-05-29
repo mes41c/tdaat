@@ -3,11 +3,12 @@ import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import ReactMarkdown from "react-markdown";
-import { MessageCircle, X, Send, Maximize2 } from "lucide-react";
+import { X, Send, Maximize2, Mic, Volume2, VolumeX, Square } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { createArfThread } from "@/lib/arf.functions";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Button } from "@/components/ui/button";
+import { useVoiceChat } from "@/hooks/useVoiceChat";
 import arfAvatar from "@/assets/arf-avatar.png";
 import { toast } from "sonner";
 
