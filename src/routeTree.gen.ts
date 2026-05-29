@@ -14,8 +14,13 @@ import { Route as TeamRouteImport } from './routes/team'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AuthenticatedArfRouteImport } from './routes/_authenticated/arf'
+import { Route as AuthenticatedArfThreadIdRouteImport } from './routes/_authenticated/arf.$threadId'
 
 const TurkDunyasiRoute = TurkDunyasiRouteImport.update({
   id: '/turk-dunyasi',
@@ -42,9 +47,18 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -52,73 +66,118 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedArfRoute = AuthenticatedArfRouteImport.update({
+  id: '/arf',
+  path: '/arf',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedArfThreadIdRoute =
+  AuthenticatedArfThreadIdRouteImport.update({
+    id: '/$threadId',
+    path: '/$threadId',
+    getParentRoute: () => AuthenticatedArfRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/team': typeof TeamRoute
   '/turk-dunyasi': typeof TurkDunyasiRoute
+  '/arf': typeof AuthenticatedArfRouteWithChildren
+  '/api/chat': typeof ApiChatRoute
+  '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/team': typeof TeamRoute
   '/turk-dunyasi': typeof TurkDunyasiRoute
+  '/arf': typeof AuthenticatedArfRouteWithChildren
+  '/api/chat': typeof ApiChatRoute
+  '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/team': typeof TeamRoute
   '/turk-dunyasi': typeof TurkDunyasiRoute
+  '/_authenticated/arf': typeof AuthenticatedArfRouteWithChildren
+  '/api/chat': typeof ApiChatRoute
+  '/_authenticated/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/auth'
     | '/blog'
     | '/contact'
     | '/events'
     | '/team'
     | '/turk-dunyasi'
+    | '/arf'
+    | '/api/chat'
+    | '/arf/$threadId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/auth'
     | '/blog'
     | '/contact'
     | '/events'
     | '/team'
     | '/turk-dunyasi'
+    | '/arf'
+    | '/api/chat'
+    | '/arf/$threadId'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
+    | '/auth'
     | '/blog'
     | '/contact'
     | '/events'
     | '/team'
     | '/turk-dunyasi'
+    | '/_authenticated/arf'
+    | '/api/chat'
+    | '/_authenticated/arf/$threadId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   TeamRoute: typeof TeamRoute
   TurkDunyasiRoute: typeof TurkDunyasiRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -158,11 +217,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -172,17 +245,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/arf': {
+      id: '/_authenticated/arf'
+      path: '/arf'
+      fullPath: '/arf'
+      preLoaderRoute: typeof AuthenticatedArfRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/arf/$threadId': {
+      id: '/_authenticated/arf/$threadId'
+      path: '/$threadId'
+      fullPath: '/arf/$threadId'
+      preLoaderRoute: typeof AuthenticatedArfThreadIdRouteImport
+      parentRoute: typeof AuthenticatedArfRoute
+    }
   }
 }
 
+interface AuthenticatedArfRouteChildren {
+  AuthenticatedArfThreadIdRoute: typeof AuthenticatedArfThreadIdRoute
+}
+
+const AuthenticatedArfRouteChildren: AuthenticatedArfRouteChildren = {
+  AuthenticatedArfThreadIdRoute: AuthenticatedArfThreadIdRoute,
+}
+
+const AuthenticatedArfRouteWithChildren =
+  AuthenticatedArfRoute._addFileChildren(AuthenticatedArfRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedArfRoute: typeof AuthenticatedArfRouteWithChildren
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedArfRoute: AuthenticatedArfRouteWithChildren,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   TeamRoute: TeamRoute,
   TurkDunyasiRoute: TurkDunyasiRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
