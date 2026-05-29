@@ -156,30 +156,52 @@ function ArfChatPage() {
         </div>
         <nav className="flex-1 overflow-y-auto px-2 pb-2">
           {threads.map((t) => (
-            <div
-              key={t.id}
-              className={`group flex items-center gap-1 rounded-md px-2 py-1.5 text-sm ${t.id === threadId ? "bg-accent text-accent-foreground" : "hover:bg-accent/50"}`}
-            >
-              <button
-                className="flex-1 truncate text-left"
-                onClick={() => {
-                  navigate({ to: "/arf/$threadId", params: { threadId: t.id } });
-                  setSidebarOpen(false);
-                }}
-              >
-                {t.title}
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDelete(t.id);
-                }}
-                className="opacity-0 transition-opacity group-hover:opacity-100"
-                aria-label="Sil"
-              >
-                <Trash2 className="h-3.5 w-3.5 text-muted-foreground hover:text-destructive" />
-              </button>
-            </div>
+            <ContextMenu key={t.id}>
+              <ContextMenuTrigger asChild>
+                <div
+                  className={`group flex items-center gap-1 rounded-md px-2 py-1.5 text-sm ${t.id === threadId ? "bg-accent text-accent-foreground" : "hover:bg-accent/50"}`}
+                >
+                  <button
+                    className="flex-1 truncate text-left"
+                    onClick={() => {
+                      navigate({ to: "/arf/$threadId", params: { threadId: t.id } });
+                      setSidebarOpen(false);
+                    }}
+                  >
+                    {t.title}
+                  </button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        onClick={(e) => e.stopPropagation()}
+                        className="opacity-0 transition-opacity group-hover:opacity-100"
+                        aria-label="Seçenekler"
+                      >
+                        <MoreVertical className="h-3.5 w-3.5 text-muted-foreground" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem
+                        className="text-destructive focus:text-destructive"
+                        onClick={() => handleDelete(t.id)}
+                      >
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Sohbeti sil
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </ContextMenuTrigger>
+              <ContextMenuContent>
+                <ContextMenuItem
+                  className="text-destructive focus:text-destructive"
+                  onClick={() => handleDelete(t.id)}
+                >
+                  <Trash2 className="mr-2 h-4 w-4" />
+                  Sohbeti sil
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
           ))}
         </nav>
         <div className="border-t border-border/60 p-3">
