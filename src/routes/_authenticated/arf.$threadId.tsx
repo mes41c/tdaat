@@ -73,7 +73,7 @@ function ArfChatPage() {
     () =>
       new DefaultChatTransport({
         api: "/api/chat",
-        headers: () => (token ? { Authorization: `Bearer ${token}` } : {}),
+        headers: () => (token ? { Authorization: `Bearer ${token}` } : ({} as Record<string, string>)),
         body: { threadId },
       }),
     [token, threadId],
@@ -92,7 +92,10 @@ function ArfChatPage() {
   const [input, setInput] = useState("");
   const isLoading = status === "submitted" || status === "streaming";
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (
+    _msg: unknown,
+    e: React.FormEvent<HTMLFormElement>,
+  ) => {
     e.preventDefault();
     const text = input.trim();
     if (!text || isLoading) return;
