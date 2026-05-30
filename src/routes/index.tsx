@@ -5,6 +5,9 @@ import heroImg from "@/assets/hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
+    ],
     meta: [
       { title: "Türk Dünyası Akademik Araştırmalar Topluluğu" },
       {
