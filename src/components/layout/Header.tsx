@@ -30,7 +30,7 @@ export function Header() {
           to="/"
           className="flex items-center gap-2 font-[var(--font-heading)] text-xl font-bold tracking-tight text-foreground transition-colors hover:text-primary"
         >
-          <img src={logo} alt="TDAAT Logo" className="h-9 w-9 object-contain" />
+          <img src={logo} alt="Türk Dünyası Akademik Araştırmalar Topluluğu Logosu" className="h-9 w-9 object-contain" />
           <span className="hidden sm:inline">TDAAT</span>
         </Link>
 
