@@ -3,8 +3,32 @@ import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+const upcomingForSchema = [
+  {
+    name: "Tanışma Etkinliği: Turan Toyu",
+    startDate: "2026-09-27T13:00:00+03:00",
+    endDate: "2026-09-27T15:30:00+03:00",
+    location: "İnciraltı Kent Ormanı, İzmir",
+  },
+  {
+    name: "Makale Okuması",
+    startDate: "2026-10-02T16:00:00+03:00",
+    endDate: "2026-10-02T17:30:00+03:00",
+    location: "Eğitim+Spor Kafe, İzmir",
+  },
+  {
+    name: "3. Geleneksel Mangala Turnuvası",
+    startDate: "2026-10-21T13:30:00+03:00",
+    endDate: "2026-10-21T15:00:00+03:00",
+    location: "Kış Bahçesi Kafe, İzmir",
+  },
+];
+
 export const Route = createFileRoute("/events")({
   head: () => ({
+    links: [
+      { rel: "canonical", href: "https://tdaat.lovable.app/events" },
+    ],
     meta: [
       { title: "Etkinlikler — TDAAT" },
       {
@@ -23,6 +47,28 @@ export const Route = createFileRoute("/events")({
       },
       { property: "og:url", content: "https://tdaat.lovable.app/events" },
     ],
+    scripts: upcomingForSchema.map((event) => ({
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: event.name,
+        startDate: event.startDate,
+        endDate: event.endDate,
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        eventStatus: "https://schema.org/EventScheduled",
+        location: {
+          "@type": "Place",
+          name: event.location,
+          address: event.location,
+        },
+        organizer: {
+          "@type": "Organization",
+          name: "Türk Dünyası Akademik Araştırmalar Topluluğu",
+          url: "https://tdaat.lovable.app/",
+        },
+      }),
+    })),
   }),
   component: EventsPage,
 });
