@@ -150,7 +150,7 @@ function AboutPage() {
           <HighlightCard
             icon={Globe2}
             title="Uluslararası konuk"
-            description="Kazakistan L.N. Gumilev Avrasya Millî Üniversitesi'nden Prof. Dr. Bekzhan Abdualıulı'nın katıldığı dil konferansı."
+            description="Medya panelimizde EÜ Rektörü Prof. Dr. Musa Alcı, TDAE Müdürü Prof. Dr. Atıf Akgün ve Azerbaycanlı gazeteci Agil Alesger katılımcılar arasındaydı."
           />
           <HighlightCard
             icon={Award}
@@ -179,7 +179,7 @@ function AboutPage() {
               "Ege Üniversitesi Türk Dünyası Araştırmaları Enstitüsü (TDAE)",
               "Ege Üniversitesi Sağlık, Kültür ve Spor Daire Başkanlığı",
               "ÜNİDES — Üniversite İletişim Derneği",
-              "L.N. Gumilev Avrasya Millî Üniversitesi (Kazakistan)",
+              
               "Ankara Üniversitesi",
               "Akdeniz Üniversitesi",
             ].map((p) => (
