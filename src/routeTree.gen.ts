@@ -9,9 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UyeOlRouteImport } from './routes/uye-ol'
 import { Route as TurkDunyasiRouteImport } from './routes/turk-dunyasi'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as SssRouteImport } from './routes/sss'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as GaleriRouteImport } from './routes/galeri'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -19,12 +22,19 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsSlugRouteImport } from './routes/events.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiTtsRouteImport } from './routes/api/tts'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedArfRouteImport } from './routes/_authenticated/arf'
 import { Route as AuthenticatedArfIndexRouteImport } from './routes/_authenticated/arf.index'
 import { Route as AuthenticatedArfThreadIdRouteImport } from './routes/_authenticated/arf.$threadId'
 
+const UyeOlRoute = UyeOlRouteImport.update({
+  id: '/uye-ol',
+  path: '/uye-ol',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TurkDunyasiRoute = TurkDunyasiRouteImport.update({
   id: '/turk-dunyasi',
   path: '/turk-dunyasi',
@@ -35,9 +45,19 @@ const TeamRoute = TeamRouteImport.update({
   path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SssRoute = SssRouteImport.update({
+  id: '/sss',
+  path: '/sss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriRoute = GaleriRouteImport.update({
+  id: '/galeri',
+  path: '/galeri',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -74,6 +94,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsSlugRoute = EventsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => EventsRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 const ApiTtsRoute = ApiTtsRouteImport.update({
   id: '/api/tts',
   path: '/api/tts',
@@ -105,15 +135,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
+  '/galeri': typeof GaleriRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sss': typeof SssRoute
   '/team': typeof TeamRoute
   '/turk-dunyasi': typeof TurkDunyasiRoute
+  '/uye-ol': typeof UyeOlRoute
   '/arf': typeof AuthenticatedArfRouteWithChildren
   '/api/chat': typeof ApiChatRoute
   '/api/tts': typeof ApiTtsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
   '/arf/': typeof AuthenticatedArfIndexRoute
 }
@@ -121,14 +156,19 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
+  '/galeri': typeof GaleriRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sss': typeof SssRoute
   '/team': typeof TeamRoute
   '/turk-dunyasi': typeof TurkDunyasiRoute
+  '/uye-ol': typeof UyeOlRoute
   '/api/chat': typeof ApiChatRoute
   '/api/tts': typeof ApiTtsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
   '/arf': typeof AuthenticatedArfIndexRoute
 }
@@ -138,15 +178,20 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
+  '/galeri': typeof GaleriRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sss': typeof SssRoute
   '/team': typeof TeamRoute
   '/turk-dunyasi': typeof TurkDunyasiRoute
+  '/uye-ol': typeof UyeOlRoute
   '/_authenticated/arf': typeof AuthenticatedArfRouteWithChildren
   '/api/chat': typeof ApiChatRoute
   '/api/tts': typeof ApiTtsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/events/$slug': typeof EventsSlugRoute
   '/_authenticated/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
   '/_authenticated/arf/': typeof AuthenticatedArfIndexRoute
 }
@@ -159,12 +204,17 @@ export interface FileRouteTypes {
     | '/blog'
     | '/contact'
     | '/events'
+    | '/galeri'
     | '/sitemap.xml'
+    | '/sss'
     | '/team'
     | '/turk-dunyasi'
+    | '/uye-ol'
     | '/arf'
     | '/api/chat'
     | '/api/tts'
+    | '/blog/$slug'
+    | '/events/$slug'
     | '/arf/$threadId'
     | '/arf/'
   fileRoutesByTo: FileRoutesByTo
@@ -175,11 +225,16 @@ export interface FileRouteTypes {
     | '/blog'
     | '/contact'
     | '/events'
+    | '/galeri'
     | '/sitemap.xml'
+    | '/sss'
     | '/team'
     | '/turk-dunyasi'
+    | '/uye-ol'
     | '/api/chat'
     | '/api/tts'
+    | '/blog/$slug'
+    | '/events/$slug'
     | '/arf/$threadId'
     | '/arf'
   id:
@@ -191,12 +246,17 @@ export interface FileRouteTypes {
     | '/blog'
     | '/contact'
     | '/events'
+    | '/galeri'
     | '/sitemap.xml'
+    | '/sss'
     | '/team'
     | '/turk-dunyasi'
+    | '/uye-ol'
     | '/_authenticated/arf'
     | '/api/chat'
     | '/api/tts'
+    | '/blog/$slug'
+    | '/events/$slug'
     | '/_authenticated/arf/$threadId'
     | '/_authenticated/arf/'
   fileRoutesById: FileRoutesById
@@ -206,18 +266,28 @@ export interface RootRouteChildren {
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
-  BlogRoute: typeof BlogRoute
+  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
-  EventsRoute: typeof EventsRoute
+  EventsRoute: typeof EventsRouteWithChildren
+  GaleriRoute: typeof GaleriRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SssRoute: typeof SssRoute
   TeamRoute: typeof TeamRoute
   TurkDunyasiRoute: typeof TurkDunyasiRoute
+  UyeOlRoute: typeof UyeOlRoute
   ApiChatRoute: typeof ApiChatRoute
   ApiTtsRoute: typeof ApiTtsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/uye-ol': {
+      id: '/uye-ol'
+      path: '/uye-ol'
+      fullPath: '/uye-ol'
+      preLoaderRoute: typeof UyeOlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/turk-dunyasi': {
       id: '/turk-dunyasi'
       path: '/turk-dunyasi'
@@ -232,11 +302,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sss': {
+      id: '/sss'
+      path: '/sss'
+      fullPath: '/sss'
+      preLoaderRoute: typeof SssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeri': {
+      id: '/galeri'
+      path: '/galeri'
+      fullPath: '/galeri'
+      preLoaderRoute: typeof GaleriRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -287,6 +371,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/events/$slug': {
+      id: '/events/$slug'
+      path: '/$slug'
+      fullPath: '/events/$slug'
+      preLoaderRoute: typeof EventsSlugRouteImport
+      parentRoute: typeof EventsRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
     }
     '/api/tts': {
       id: '/api/tts'
@@ -351,20 +449,54 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
+interface EventsRouteChildren {
+  EventsSlugRoute: typeof EventsSlugRoute
+}
+
+const EventsRouteChildren: EventsRouteChildren = {
+  EventsSlugRoute: EventsSlugRoute,
+}
+
+const EventsRouteWithChildren =
+  EventsRoute._addFileChildren(EventsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
-  BlogRoute: BlogRoute,
+  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
-  EventsRoute: EventsRoute,
+  EventsRoute: EventsRouteWithChildren,
+  GaleriRoute: GaleriRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SssRoute: SssRoute,
   TeamRoute: TeamRoute,
   TurkDunyasiRoute: TurkDunyasiRoute,
+  UyeOlRoute: UyeOlRoute,
   ApiChatRoute: ApiChatRoute,
   ApiTtsRoute: ApiTtsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
