@@ -205,7 +205,12 @@ function EventsPage() {
                       {event.location}
                     </div>
                   </div>
-                  <div className="mt-auto pt-5">
+                  <div className="mt-auto flex flex-col gap-2 pt-5">
+                    <Button asChild size="sm" className="w-full font-[var(--font-heading)]">
+                      <Link to="/events/$slug" params={{ slug: event.slug }}>
+                        Detaylar <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
                     <AddToCalendar event={event} />
                   </div>
                 </div>
