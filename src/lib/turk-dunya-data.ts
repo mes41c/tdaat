@@ -67,7 +67,7 @@ export const newsItems: NewsItem[] = [
       "Azerbaycan, Hazar Denizi kıyısında kurduğu rüzgar enerjisi santralleriyle bölgesel enerji işbirliğinde öncü rol oynamaya devam ediyor.",
     content: [
       "Azerbaycan, Hazar Denizi kıyısında devreye aldığı yeni rüzgar enerjisi santralleriyle yenilenebilir enerji üretimini son bir yılda %40 artırdı. Hükümet, 2030 yılına kadar üretilen elektriğin yarısının yenilenebilir kaynaklardan sağlanmasını hedefliyor.",
-      "Projenin en dikkat çekici yönü, üretilen fazla enerjinin Türkiye ve Gürcistan üzerinden Avrupa'ya, doğuya doğru ise Orta Asya Türk cumhuriyetlerine iletilmesi planı. Bu kapsamda Hazar geçişli bir denizaltı elektrik kablosu projesi için fizibilite çalışmaları başlatıldı.",
+      "Projenin en dikkat çekici yönü, üretilen fazla enerjinin Türkiye ve Gürcistan üzerinden Avrupa'ya, doğuya doğru ise Türkistan Türk cumhuriyetlerine iletilmesi planı. Bu kapsamda Hazar geçişli bir denizaltı elektrik kablosu projesi için fizibilite çalışmaları başlatıldı.",
       "Türk Devletleri Teşkilatı çatısı altında oluşturulması planlanan 'Türk Enerji Koridoru', özellikle Özbekistan ve Kırgızistan gibi enerji talebi hızla artan ülkeler için kritik önemde değerlendiriliyor.",
       "Azerbaycan ayrıca yeşil hidrojen üretimi konusunda Türk üniversiteleriyle ortak araştırma anlaşmaları imzaladı.",
     ],
