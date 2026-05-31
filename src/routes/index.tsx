@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Users, Lightbulb, ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import { useI18n } from "@/lib/i18n";
+import { upcomingEvents as upcomingEventsData } from "@/lib/events-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,23 +52,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const upcomingEvents = [
-  {
-    title: "Tanışma Etkinliği: Turan Toyu",
-    date: "27 Eylül 2026",
-    location: "İnciraltı Kent Ormanı",
-  },
-  {
-    title: "Makale Okuması",
-    date: "2 Ekim 2026",
-    location: "Eğitim+Spor Kafe",
-  },
-  {
-    title: "3. Gelenksel Mangala Turnuvası",
-    date: "21 Ekim 2026",
-    location: "Kış Bahçesi Kafe",
-  },
-];
+const upcomingEvents = upcomingEventsData.slice(0, 3);
 
 const teamPreview = [
   { name: "Muharrem Turgut", role: "Başkan", initial: "MT" },
@@ -187,8 +172,10 @@ function Index() {
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{event.location}</p>
                 <div className="mt-auto pt-4">
-                  <Button variant="outline" size="sm" className="w-full font-[var(--font-heading)]">
-                    {t("home.details")}
+                  <Button variant="outline" size="sm" asChild className="w-full font-[var(--font-heading)]">
+                    <Link to="/events/$slug" params={{ slug: event.slug }}>
+                      {t("home.details")}
+                    </Link>
                   </Button>
                 </div>
               </div>

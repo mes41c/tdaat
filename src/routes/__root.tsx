@@ -17,19 +17,30 @@ import { I18nProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-background to-accent/20 px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Sayfa bulunamadı</h2>
+        <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20">
+          TDAAT
+        </div>
+        <h1 className="mt-6 font-[var(--font-heading)] text-7xl font-bold text-foreground">404</h1>
+        <h2 className="mt-4 font-[var(--font-heading)] text-xl font-semibold text-foreground">
+          Bu yol bizi bir yere çıkarmıyor
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Aradığın sayfa mevcut değil veya taşınmış olabilir.
+          Aradığın sayfa Türk dünyasının bu köşesinde yok. Anasayfadan yeniden başlayabilir veya etkinliklerimize göz atabilirsin.
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Anasayfaya Dön
+          </Link>
+          <Link
+            to="/events"
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            Etkinliklere Bak
           </Link>
         </div>
       </div>
@@ -85,8 +96,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Türk Dünyası Akademik Araştırmalar Topluluğu" },
       { name: "twitter:description", content: "Türk Dünyası Akademik Araştırmalar Topluluğu, üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda birlikte güçlendikleri bir topluluk." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4eec6068-58dc-4f5e-ad80-12687e2b7680/id-preview-3b671f81--b508f5c4-6ed9-45c9-b79a-668caf05fa74.lovable.app-1779979674819.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4eec6068-58dc-4f5e-ad80-12687e2b7680/id-preview-3b671f81--b508f5c4-6ed9-45c9-b79a-668caf05fa74.lovable.app-1779979674819.png" },
+      { property: "og:image", content: "https://tdaat.lovable.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://tdaat.lovable.app/og-image.jpg" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
