@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Tag, Globe } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { FlagIcon } from "@/components/FlagIcon";
 import { newsItems } from "@/lib/turk-dunya-data";
 
 const categoryLabels: Record<string, string> = {
@@ -82,9 +83,7 @@ function NewsDetailPage() {
           <Globe className="mr-1 h-2.5 w-2.5" />
           {item.country}
         </Badge>
-        <span className="text-2xl" role="img" aria-label={item.country}>
-          {item.flag}
-        </span>
+        <FlagIcon country={item.flag} />
       </div>
 
       <h1 className="mt-4 font-[var(--font-heading)] text-3xl font-bold leading-tight text-foreground sm:text-4xl">
