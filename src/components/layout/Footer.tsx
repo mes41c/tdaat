@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Youtube, Instagram, Facebook, Twitter } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useI18n } from "@/lib/i18n";
+import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
 export function Footer() {
   const { t } = useI18n();
@@ -25,6 +26,12 @@ export function Footer() {
             <p className="mt-3 max-w-xs text-sm text-muted-foreground leading-relaxed">
               {t("footer.tagline")}
             </p>
+            <div className="mt-5 max-w-xs">
+              <h3 className="font-[var(--font-heading)] text-sm font-semibold tracking-wide text-foreground">
+                Bültenimize abone ol
+              </h3>
+              <NewsletterForm />
+            </div>
           </div>
 
 
@@ -51,12 +58,28 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/galeri" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  Galeri
+                </Link>
+              </li>
+              <li>
+                <Link to="/sss" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  SSS
+                </Link>
+              </li>
+              <li>
+                <Link to="/uye-ol" className="text-sm font-medium text-primary transition-colors hover:underline">
+                  Üye Ol
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="text-sm text-muted-foreground transition-colors hover:text-primary">
                   {t("nav.contact")}
                 </Link>
               </li>
             </ul>
           </div>
+
 
           {/* Social Media */}
           <div>
