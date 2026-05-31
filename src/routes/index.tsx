@@ -63,7 +63,7 @@ const upcomingEvents = [
     location: "Eğitim+Spor Kafe",
   },
   {
-    title: "3. Gelenksel Mangala Turnuvası",
+    title: "3. Geleneksel Mangala Turnuvası",
     date: "21 Ekim 2026",
     location: "Kış Bahçesi Kafe",
   },
