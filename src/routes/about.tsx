@@ -249,3 +249,25 @@ function ValueCard({
     </div>
   );
 }
+
+function HighlightCard({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: typeof Target;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="rounded-xl border border-border/60 bg-card p-5">
+      <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <Icon className="h-4.5 w-4.5" />
+      </div>
+      <h3 className="mt-3 font-[var(--font-heading)] text-sm font-semibold text-foreground">
+        {title}
+      </h3>
+      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{description}</p>
+    </div>
+  );
+}
