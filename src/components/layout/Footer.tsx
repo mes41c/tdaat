@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { Youtube, Instagram, Facebook, Twitter } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { useI18n } from "@/lib/i18n";
 
 export function Footer() {
+  const { t } = useI18n();
   return (
     <footer className="border-t border-border/50 bg-background">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
