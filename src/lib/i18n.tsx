@@ -1,13 +1,14 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type Lang = "tr" | "az" | "kk" | "ky" | "uz";
+export type Lang = "tr" | "az" | "kk" | "ky" | "uz" | "tk";
 
 export const LANGS: { code: Lang; label: string; native: string; flag: string }[] = [
   { code: "tr", label: "Türkçe", native: "Türkçe", flag: "🇹🇷" },
   { code: "az", label: "Azərbaycanca", native: "Azərbaycanca", flag: "🇦🇿" },
-  { code: "kk", label: "Қазақша", native: "Қазақша", flag: "🇰🇿" },
+  { code: "kk", label: "Қазақша", native: "Қазақşa", flag: "🇰🇿" },
   { code: "ky", label: "Кыргызча", native: "Кыргызча", flag: "🇰🇬" },
   { code: "uz", label: "Oʻzbekcha", native: "Oʻzbekcha", flag: "🇺🇿" },
+  { code: "tk", label: "Türkmençe", native: "Türkmençe", flag: "🇹🇲" },
 ];
 
 type Dict = Record<string, string>;
