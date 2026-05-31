@@ -30,6 +30,7 @@ import { Route as AuthenticatedArfRouteImport } from './routes/_authenticated/ar
 import { Route as AuthenticatedArfIndexRouteImport } from './routes/_authenticated/arf.index'
 import { Route as TurkDunyasiKulturSlugRouteImport } from './routes/turk-dunyasi.kultur.$slug'
 import { Route as TurkDunyasiHaberSlugRouteImport } from './routes/turk-dunyasi.haber.$slug'
+import { Route as TurkDunyasiAkademikSlugRouteImport } from './routes/turk-dunyasi.akademik.$slug'
 import { Route as AuthenticatedArfThreadIdRouteImport } from './routes/_authenticated/arf.$threadId'
 
 const UyeOlRoute = UyeOlRouteImport.update({
@@ -136,6 +137,11 @@ const TurkDunyasiHaberSlugRoute = TurkDunyasiHaberSlugRouteImport.update({
   path: '/turk-dunyasi/haber/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TurkDunyasiAkademikSlugRoute = TurkDunyasiAkademikSlugRouteImport.update({
+  id: '/turk-dunyasi/akademik/$slug',
+  path: '/turk-dunyasi/akademik/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedArfThreadIdRoute =
   AuthenticatedArfThreadIdRouteImport.update({
     id: '/$threadId',
@@ -162,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/events/$slug': typeof EventsSlugRoute
   '/turk-dunyasi/': typeof TurkDunyasiIndexRoute
   '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
+  '/turk-dunyasi/akademik/$slug': typeof TurkDunyasiAkademikSlugRoute
   '/turk-dunyasi/haber/$slug': typeof TurkDunyasiHaberSlugRoute
   '/turk-dunyasi/kultur/$slug': typeof TurkDunyasiKulturSlugRoute
   '/arf/': typeof AuthenticatedArfIndexRoute
@@ -184,6 +191,7 @@ export interface FileRoutesByTo {
   '/events/$slug': typeof EventsSlugRoute
   '/turk-dunyasi': typeof TurkDunyasiIndexRoute
   '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
+  '/turk-dunyasi/akademik/$slug': typeof TurkDunyasiAkademikSlugRoute
   '/turk-dunyasi/haber/$slug': typeof TurkDunyasiHaberSlugRoute
   '/turk-dunyasi/kultur/$slug': typeof TurkDunyasiKulturSlugRoute
   '/arf': typeof AuthenticatedArfIndexRoute
@@ -209,6 +217,7 @@ export interface FileRoutesById {
   '/events/$slug': typeof EventsSlugRoute
   '/turk-dunyasi/': typeof TurkDunyasiIndexRoute
   '/_authenticated/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
+  '/turk-dunyasi/akademik/$slug': typeof TurkDunyasiAkademikSlugRoute
   '/turk-dunyasi/haber/$slug': typeof TurkDunyasiHaberSlugRoute
   '/turk-dunyasi/kultur/$slug': typeof TurkDunyasiKulturSlugRoute
   '/_authenticated/arf/': typeof AuthenticatedArfIndexRoute
@@ -234,6 +243,7 @@ export interface FileRouteTypes {
     | '/events/$slug'
     | '/turk-dunyasi/'
     | '/arf/$threadId'
+    | '/turk-dunyasi/akademik/$slug'
     | '/turk-dunyasi/haber/$slug'
     | '/turk-dunyasi/kultur/$slug'
     | '/arf/'
@@ -256,6 +266,7 @@ export interface FileRouteTypes {
     | '/events/$slug'
     | '/turk-dunyasi'
     | '/arf/$threadId'
+    | '/turk-dunyasi/akademik/$slug'
     | '/turk-dunyasi/haber/$slug'
     | '/turk-dunyasi/kultur/$slug'
     | '/arf'
@@ -280,6 +291,7 @@ export interface FileRouteTypes {
     | '/events/$slug'
     | '/turk-dunyasi/'
     | '/_authenticated/arf/$threadId'
+    | '/turk-dunyasi/akademik/$slug'
     | '/turk-dunyasi/haber/$slug'
     | '/turk-dunyasi/kultur/$slug'
     | '/_authenticated/arf/'
@@ -301,6 +313,7 @@ export interface RootRouteChildren {
   ApiChatRoute: typeof ApiChatRoute
   ApiTtsRoute: typeof ApiTtsRoute
   TurkDunyasiIndexRoute: typeof TurkDunyasiIndexRoute
+  TurkDunyasiAkademikSlugRoute: typeof TurkDunyasiAkademikSlugRoute
   TurkDunyasiHaberSlugRoute: typeof TurkDunyasiHaberSlugRoute
   TurkDunyasiKulturSlugRoute: typeof TurkDunyasiKulturSlugRoute
 }
@@ -454,6 +467,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TurkDunyasiHaberSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/turk-dunyasi/akademik/$slug': {
+      id: '/turk-dunyasi/akademik/$slug'
+      path: '/turk-dunyasi/akademik/$slug'
+      fullPath: '/turk-dunyasi/akademik/$slug'
+      preLoaderRoute: typeof TurkDunyasiAkademikSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/arf/$threadId': {
       id: '/_authenticated/arf/$threadId'
       path: '/$threadId'
@@ -526,6 +546,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiChatRoute: ApiChatRoute,
   ApiTtsRoute: ApiTtsRoute,
   TurkDunyasiIndexRoute: TurkDunyasiIndexRoute,
+  TurkDunyasiAkademikSlugRoute: TurkDunyasiAkademikSlugRoute,
   TurkDunyasiHaberSlugRoute: TurkDunyasiHaberSlugRoute,
   TurkDunyasiKulturSlugRoute: TurkDunyasiKulturSlugRoute,
 }
