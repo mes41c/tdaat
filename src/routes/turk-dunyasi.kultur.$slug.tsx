@@ -55,7 +55,7 @@ function CultureDetailPage() {
       </Link>
 
       <div className="mt-6 flex items-center gap-3">
-        <span className="text-4xl" role="img" aria-label={item.title}>{item.flag}</span>
+        <CultureIcon id={item.id} size="lg" />
         <Badge variant="secondary" className="text-xs">
           <Globe className="mr-1 h-2.5 w-2.5" />
           {item.origin}
