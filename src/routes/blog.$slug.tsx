@@ -69,7 +69,7 @@ function PostDetail() {
         <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4" /> {post.readingTime}</span>
       </div>
       <div className="prose prose-neutral mt-10 max-w-none leading-relaxed text-foreground/90 dark:prose-invert">
-        {post.content.split("\n\n").map((para, i) => (
+        {post.content.split("\n\n").map((para: string, i: number) => (
           <p key={i} className="mb-4">{para}</p>
         ))}
       </div>
