@@ -17,19 +17,30 @@ import { I18nProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-background to-accent/20 px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Sayfa bulunamadı</h2>
+        <div className="mx-auto inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20">
+          TDAAT
+        </div>
+        <h1 className="mt-6 font-[var(--font-heading)] text-7xl font-bold text-foreground">404</h1>
+        <h2 className="mt-4 font-[var(--font-heading)] text-xl font-semibold text-foreground">
+          Bu yol bizi bir yere çıkarmıyor
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Aradığın sayfa mevcut değil veya taşınmış olabilir.
+          Aradığın sayfa Türk dünyasının bu köşesinde yok. Anasayfadan yeniden başlayabilir veya etkinliklerimize göz atabilirsin.
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Anasayfaya Dön
+          </Link>
+          <Link
+            to="/events"
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            Etkinliklere Bak
           </Link>
         </div>
       </div>
