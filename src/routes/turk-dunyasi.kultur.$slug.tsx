@@ -68,7 +68,7 @@ function CultureDetailPage() {
       <p className="mt-6 text-lg leading-relaxed text-foreground/90">{item.description}</p>
 
       <div className="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground">
-        {item.content.map((paragraph, i) => (
+        {item.content.map((paragraph: string, i: number) => (
           <p key={i}>{paragraph}</p>
         ))}
       </div>
