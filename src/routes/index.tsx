@@ -52,7 +52,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-import { upcomingEvents as upcomingEventsData } from "@/lib/events-data";
 const upcomingEvents = upcomingEventsData.slice(0, 3);
 
 const teamPreview = [
