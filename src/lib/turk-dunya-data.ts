@@ -176,7 +176,7 @@ export const cultureItems: CultureItem[] = [
     title: "Buzkashi (Oğlak Kapma)",
     description:
       "Özellikle Afganistan, Özbekistan ve Kırgızistan'da oynanan geleneksel atlı spor. Ölü oğlağı hedefe taşıma üzerine kurulan bu oyun, Türk atlı kültürünün güçlü bir ifadesidir.",
-    origin: "Orta Asya",
+    origin: "Türkistan",
     flag: "🏇",
   },
 ];
