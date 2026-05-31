@@ -23,47 +23,36 @@ export function Footer() {
               Türk Dünyası Akademik Araştırmalar Topluluğu
             </Link>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground leading-relaxed">
-              Üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda
-              birlikte güçlendikleri bir topluluk.
+              {t("footer.tagline")}
             </p>
           </div>
+
+
 
           {/* Links */}
           <div>
             <h3 className="font-[var(--font-heading)] text-sm font-semibold tracking-wide text-foreground">
-              Sayfalar
+              {t("footer.pages")}
             </h3>
             <ul className="mt-3 flex flex-col gap-2">
               <li>
-                <Link
-                  to="/about"
-                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Hakkımızda
+                <Link to="/about" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  {t("nav.about")}
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/events"
-                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Etkinlikler
+                <Link to="/events" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  {t("nav.events")}
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/team"
-                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                >
-                  Ekibimiz
+                <Link to="/team" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  {t("nav.team")}
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/contact"
-                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                >
-                  İletişim
+                <Link to="/contact" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  {t("nav.contact")}
                 </Link>
               </li>
             </ul>
@@ -72,7 +61,7 @@ export function Footer() {
           {/* Social Media */}
           <div>
             <h3 className="font-[var(--font-heading)] text-sm font-semibold tracking-wide text-foreground">
-              Sosyal Medya
+              {t("footer.social")}
             </h3>
             <div className="mt-3 flex flex-col gap-2">
               <a
