@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Users, Lightbulb, ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import { useI18n } from "@/lib/i18n";
+import { upcomingEvents as upcomingEventsData } from "@/lib/events-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
