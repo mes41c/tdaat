@@ -102,7 +102,7 @@ export const pastEvents: EventItem[] = [
   },
   {
     slug: "ortak-kimlik-paneli-2025",
-    title: "Türk Dünyası ve Ortak Kimliğinin İnşası",
+    title: "Türk Dünyası ve Ortak Türk Kimliğinin İnşası",
     date: "23 Aralık 2025",
     time: "—",
     location: "EÜ Prof. Dr. Nuri Bilgin Konferans Salonu",
