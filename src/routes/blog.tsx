@@ -27,10 +27,10 @@ function BlogPage() {
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-3xl">
-        <h1 className="font-[var(--font-heading)] text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-left">
+        <h1 className="font-[var(--font-heading)] text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Blog
         </h1>
-        <p className="mt-6 text-lg leading-relaxed text-muted-foreground text-center">
+        <p className="mt-6 text-lg leading-relaxed text-muted-foreground text-left">
           Türk dünyası, akademik araştırmalar ve topluluk hayatına dair yazılarımız.
         </p>
       </div>
