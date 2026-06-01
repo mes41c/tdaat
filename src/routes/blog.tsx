@@ -30,7 +30,7 @@ function BlogPage() {
         <h1 className="font-[var(--font-heading)] text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-left">
           Blog
         </h1>
-        <p className="mt-6 text-lg leading-relaxed text-muted-foreground text-left">
+        <p className="mt-6 text-lg leading-relaxed text-muted-foreground text-center">
           Türk dünyası, akademik araştırmalar ve topluluk hayatına dair yazılarımız.
         </p>
       </div>
