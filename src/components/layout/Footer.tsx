@@ -77,11 +77,6 @@ export function Footer() {
                   Üye Ol
                 </Link>
               </li>
-              <li>
-                <Link to="/contact" className="text-sm text-muted-foreground transition-colors hover:text-primary">
-                  {t("nav.contact")}
-                </Link>
-              </li>
             </ul>
           </div>
 
