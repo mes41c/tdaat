@@ -58,6 +58,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/contact" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                  {t("nav.contact")}
+                </Link>
+              </li>
+              <li>
                 <Link to="/galeri" className="text-sm text-muted-foreground transition-colors hover:text-primary">
                   Galeri
                 </Link>
@@ -70,11 +75,6 @@ export function Footer() {
               <li>
                 <Link to="/uye-ol" className="text-sm font-medium text-primary transition-colors hover:underline">
                   Üye Ol
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-sm text-muted-foreground transition-colors hover:text-primary">
-                  {t("nav.contact")}
                 </Link>
               </li>
             </ul>
