@@ -226,6 +226,7 @@ function EventsPage() {
                         Detaylar <ArrowRight className="ml-1 h-3.5 w-3.5" />
                       </Link>
                     </Button>
+                    <EventRegistrationDialog eventSlug={event.slug} eventTitle={event.title} />
                     <AddToCalendar event={event} />
                   </div>
                 </div>
