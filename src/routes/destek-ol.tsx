@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heart, HandCoins, Users, Mail, Check, Sparkles, Target, Megaphone } from "lucide-react";
+import { Heart, Handshake, Users, BookOpen, Megaphone, Check, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -10,12 +10,12 @@ export const Route = createFileRoute("/destek-ol")({
       {
         name: "description",
         content:
-          "Türk Dünyası Akademik Araştırmalar Topluluğu'na bağış, sponsorluk ve gönüllülükle destek ol. Sponsorluk paketleri ve katkının nasıl kullanıldığını gör.",
+          "TDAAT'a bağış, sponsorluk, gönüllülük veya bilgi paylaşımıyla destek ol. Sponsorluk paketleri ve katkının nasıl kullanıldığını gör.",
       },
       { property: "og:title", content: "Destek Ol — TDAAT" },
       {
         property: "og:description",
-        content: "Bağış, sponsorluk ve gönüllülük ile topluluğumuza destek ol.",
+        content: "Bağış, sponsorluk, gönüllülük ve bilgi paylaşımıyla topluluğumuza destek ol.",
       },
       { property: "og:url", content: "https://tdaat.lovable.app/destek-ol" },
     ],
@@ -26,173 +26,166 @@ export const Route = createFileRoute("/destek-ol")({
 
 const ways = [
   {
-    icon: HandCoins,
+    icon: Heart,
     title: "Bağış Yap",
-    desc: "Tek seferlik veya düzenli bağışlarınla etkinliklerimizi sürdürmemize yardım et.",
-    href: "/contact" as const,
-    label: "İletişime Geç",
+    desc: "Tek seferlik veya düzenli bağışlarınla etkinliklerimizi sürdürmemize destek ol.",
   },
   {
-    icon: Sparkles,
+    icon: Handshake,
     title: "Sponsor Ol",
-    desc: "Kurumun adını topluluk etkinliklerimizde görünür kıl, öğrencilere ulaş.",
-    href: "/contact" as const,
-    label: "Sponsorluk Görüş",
+    desc: "Kurumun veya işletmen adına etkinliklerimize sponsor olarak markanı öğrencilerle buluştur.",
   },
   {
     icon: Users,
     title: "Gönüllü Ol",
-    desc: "Organizasyon, içerik üretimi ve saha çalışmalarımızda aktif rol al.",
-    href: "/uye-ol" as const,
-    label: "Üye Ol",
+    desc: "Zamanını ve yeteneklerini paylaş. Etkinlik organizasyonu, içerik üretimi ve daha fazlası.",
   },
   {
-    icon: Mail,
-    title: "Bilgi Al",
-    desc: "İş birliği, protokol ve etkinlik fikirleri için bizimle iletişime geç.",
-    href: "/contact" as const,
-    label: "İletişim",
+    icon: BookOpen,
+    title: "Bilgi Paylaş",
+    desc: "Konuşmacı, panelist veya akademik danışman olarak topluluğumuza katkı sağla.",
   },
 ];
 
 const tiers = [
   {
+    icon: Heart,
     name: "Dost",
-    price: "₺1.000+",
-    desc: "Bireysel destekçiler ve küçük işletmeler için.",
+    desc: "Bireysel destekçiler için. Tek seferlik veya düzenli katkı.",
     features: [
-      "Etkinlik broşürlerinde isim",
-      "Sosyal medyada teşekkür paylaşımı",
-      "Topluluk bültenine özel davet",
+      "Etkinlik bültenimizde teşekkür",
+      "Topluluk dijital sertifikası",
+      "Özel etkinlik davetleri",
     ],
     highlight: false,
   },
   {
-    name: "İlk Destek",
-    price: "₺5.000+",
-    desc: "Bir akademik dönem boyunca yanımızda olmak isteyenler için.",
+    icon: Handshake,
+    name: "Destekçi",
+    desc: "Küçük işletmeler ve kurumlar için sponsorluk paketi.",
     features: [
-      "Tüm 'Dost' avantajları",
-      "Etkinlik afiş ve dijital materyallerde logo",
-      "Web sitesi sponsorlar bölümünde logo",
-      "Bir etkinlikte stant / söz hakkı",
+      "Etkinlik afişlerinde logo",
+      "Sosyal medyada tanıtım",
+      "Web sitesinde sponsor sayfasında yer alma",
+      "1 etkinlikte stant hakkı",
     ],
     highlight: true,
   },
   {
+    icon: Megaphone,
     name: "Stratejik Ortak",
-    price: "₺15.000+",
-    desc: "Yıllık iş birliği ve uzun vadeli görünürlük arayan kurumlar için.",
+    desc: "Büyük kurumsal işbirlikleri ve ana sponsorluklar.",
     features: [
-      "Tüm 'İlk Destek' avantajları",
-      "Yıl boyunca ana sponsor görünürlüğü",
-      "Ortak etkinlik / panel düzenleme",
-      "Özel iş birliği protokolü",
-      "Yıllık etki raporu",
+      "Tüm etkinliklerde ana sponsor olarak yer alma",
+      "Özel panel / workshop düzenleme imkânı",
+      "Yıllık raporda öne çıkan tanıtım",
+      "Üyelerimizle özel networking buluşması",
     ],
     highlight: false,
   },
 ];
 
 const impact = [
-  {
-    icon: Target,
-    percent: "40%",
-    title: "Etkinlikler",
-    desc: "Konferans, panel, atölye, gezi ve kültürel buluşmalar.",
-  },
-  {
-    icon: Megaphone,
-    percent: "35%",
-    title: "İçerik & Yayın",
-    desc: "Makale, dergi, video, podcast ve dijital içerik üretimi.",
-  },
-  {
-    icon: Users,
-    percent: "25%",
-    title: "Topluluk",
-    desc: "Üye gelişimi, eğitim materyalleri ve operasyonel giderler.",
-  },
+  { percent: "%40", desc: "Etkinlik organizasyonu (panel, sempozyum, gezi)" },
+  { percent: "%35", desc: "Akademik yayın ve içerik üretimi" },
+  { percent: "%25", desc: "Topluluk altyapısı ve üye desteği" },
 ];
 
 function DestekOl() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="flex flex-col">
       {/* Hero */}
-      <header className="text-center">
+      <section className="mx-auto w-full max-w-4xl px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
         <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20">
           <Heart className="h-3.5 w-3.5" />
-          Birlikte daha güçlüyüz
-        </div>
-        <h1 className="mt-6 font-[var(--font-heading)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Destek Ol
+        </div>
+        <h1 className="mt-6 font-[var(--font-heading)] text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          Birlikte Daha Güçlüyüz
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground leading-relaxed">
-          Türk Dünyası Akademik Araştırmalar Topluluğu çalışmalarını gönüllü emekle yürütüyor.
-          Bağış, sponsorluk veya gönüllülükle yanımızda olabilir; akademik üretimi ve kültürel
-          mirası yaşatma çabamıza ortak olabilirsin.
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          TDAAT olarak Türk dünyasının akademik ve kültürel mirasını gençlere taşıyoruz. Bu
+          yolculukta yanımızda olmanın birçok yolu var.
         </p>
-      </header>
-
-      {/* Ways */}
-      <section className="mt-16">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {ways.map((w) => (
-            <div
-              key={w.title}
-              className="flex flex-col rounded-xl border border-border/60 bg-card p-6 transition-colors hover:border-primary/20 hover:bg-accent/50"
-            >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <w.icon className="h-5 w-5" />
-              </div>
-              <h2 className="mt-4 font-[var(--font-heading)] text-base font-semibold text-foreground">
-                {w.title}
-              </h2>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{w.desc}</p>
-              <div className="mt-5">
-                <Button asChild variant="outline" size="sm" className="font-[var(--font-heading)]">
-                  <Link to={w.href}>{w.label}</Link>
-                </Button>
-              </div>
-            </div>
-          ))}
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Button asChild size="lg" className="font-[var(--font-heading)]">
+            <Link to="/contact">
+              <Mail className="mr-1.5 h-4 w-4" /> İletişime Geç
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="font-[var(--font-heading)]">
+            <Link to="/uye-ol">Gönüllü Ol</Link>
+          </Button>
         </div>
       </section>
 
-      {/* Sponsorship Tiers */}
-      <section className="mt-20">
+      {/* Destek Yolları */}
+      <section className="w-full border-y border-border/50 bg-accent/30 py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="font-[var(--font-heading)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Destek Yolları
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              Sadece bağış değil; bilgi, zaman ve görünürlük de bizim için kıymetli.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {ways.map((w) => (
+              <div
+                key={w.title}
+                className="flex flex-col rounded-xl border border-border/60 bg-card p-6 transition-colors hover:border-primary/20"
+              >
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <w.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 font-[var(--font-heading)] text-lg font-semibold text-foreground">
+                  {w.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{w.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sponsorluk Paketleri */}
+      <section className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="font-[var(--font-heading)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Sponsorluk Paketleri
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Kurumun veya markan için sana uygun paketi seç. Tüm paketler özel ihtiyaçlara göre
-            şekillendirilebilir.
+            Markanı veya kurumunu gençlerle buluştur. İhtiyacına uygun paketi seç, detayları
+            konuşalım.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {tiers.map((t) => (
             <div
               key={t.name}
               className={`relative flex flex-col rounded-2xl border bg-card p-8 transition-shadow hover:shadow-md ${
                 t.highlight
-                  ? "border-primary/40 ring-1 ring-primary/20"
+                  ? "border-primary/40 ring-1 ring-primary/30"
                   : "border-border/60"
               }`}
             >
-              {t.highlight && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  Önerilen
-                </Badge>
-              )}
-              <h3 className="font-[var(--font-heading)] text-xl font-bold text-foreground">
-                {t.name}
-              </h3>
-              <div className="mt-2 font-[var(--font-heading)] text-3xl font-bold text-primary">
-                {t.price}
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <t.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-[var(--font-heading)] text-xl font-bold text-foreground">
+                    {t.name}
+                  </h3>
+                </div>
+                {t.highlight && <Badge variant="secondary">Popüler</Badge>}
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">{t.desc}</p>
+
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
+
               <ul className="mt-6 flex-1 space-y-3">
                 {t.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm text-foreground/90">
@@ -201,66 +194,51 @@ function DestekOl() {
                   </li>
                 ))}
               </ul>
+
               <Button
                 asChild
-                className="mt-8 font-[var(--font-heading)]"
                 variant={t.highlight ? "default" : "outline"}
+                className="mt-8 font-[var(--font-heading)]"
               >
-                <Link to="/contact">İletişime Geç</Link>
+                <Link to="/contact">
+                  Bu Paketle İlgileniyorum <ArrowRight className="ml-1.5 h-4 w-4" />
+                </Link>
               </Button>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Impact Distribution */}
-      <section className="mt-20">
-        <div className="text-center">
-          <h2 className="font-[var(--font-heading)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Katkın Nereye Gidiyor?
+      {/* Desteğin Nereye Gidiyor */}
+      <section className="w-full border-t border-border/50 bg-accent/30 py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center font-[var(--font-heading)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Desteğin Nereye Gidiyor?
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Şeffaflık bizim için önemli. Topluluğa yapılan katkılar şu üç alana yönlendiriliyor.
-          </p>
-        </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {impact.map((i) => (
-            <div
-              key={i.title}
-              className="rounded-xl border border-border/60 bg-card p-6 text-center"
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {impact.map((i) => (
+              <div
+                key={i.percent}
+                className="rounded-xl border border-border/60 bg-card p-6 text-center"
+              >
+                <div className="font-[var(--font-heading)] text-4xl font-bold text-primary">
+                  {i.percent}
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{i.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-10 text-center text-sm text-muted-foreground">
+            Detaylı bilgi ve özel sponsorluk talepleri için bize ulaşın:{" "}
+            <a
+              href="mailto:egeturkduyasitoplulugu@gmail.com"
+              className="font-medium text-primary transition-colors hover:underline"
             >
-              <div className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <i.icon className="h-5 w-5" />
-              </div>
-              <div className="mt-4 font-[var(--font-heading)] text-3xl font-bold text-primary">
-                {i.percent}
-              </div>
-              <h3 className="mt-2 font-[var(--font-heading)] text-base font-semibold text-foreground">
-                {i.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{i.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="mt-20 rounded-2xl bg-primary px-6 py-12 text-center text-primary-foreground">
-        <h2 className="font-[var(--font-heading)] text-2xl font-bold tracking-tight sm:text-3xl">
-          Bir sonraki etkinliği birlikte ayağa kaldıralım
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl opacity-90">
-          Sponsorluk, bağış veya iş birliği için bize yaz. 48 saat içinde geri dönüş yapıyoruz.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button
-            asChild
-            size="lg"
-            className="bg-primary-foreground font-[var(--font-heading)] text-primary hover:bg-primary-foreground/90"
-          >
-            <Link to="/contact">İletişime Geç</Link>
-          </Button>
+              egeturkduyasitoplulugu@gmail.com
+            </a>
+          </p>
         </div>
       </section>
     </div>
