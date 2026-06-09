@@ -68,7 +68,7 @@ const tiers = [
     highlight: false,
   },
   {
-    icon: Handshake,
+    icon: Sparkles,
     name: "Destekçi",
     desc: "Küçük işletmeler ve kurumlar için sponsorluk paketi.",
     features: [
