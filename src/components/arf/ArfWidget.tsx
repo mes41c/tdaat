@@ -24,9 +24,15 @@ export function ArfWidget() {
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Hide on the dedicated chat page and auth page
-  const hidden =
-    location.pathname.startsWith("/arf") || location.pathname.startsWith("/auth");
+  // Hide on pages where the floating button overlaps dense mobile content
+  const browserPath = typeof window !== "undefined" ? window.location.pathname : "";
+  const hiddenPaths = [location.pathname, browserPath];
+  const hidden = hiddenPaths.some(
+    (path) =>
+      path.startsWith("/arf") ||
+      path.startsWith("/auth") ||
+      path.startsWith("/turk-dunyasi"),
+  );
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {

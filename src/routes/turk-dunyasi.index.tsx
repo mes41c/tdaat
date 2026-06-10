@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Newspaper, BookOpen, GraduationCap, Calendar, Globe, ArrowRight, Tag, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -165,7 +165,6 @@ function CalendarPreview() {
     </section>
   );
 }
-
 
 function NewsGrid() {
   return (
