@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Newspaper, BookOpen, GraduationCap, Calendar, Globe, ArrowRight, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
