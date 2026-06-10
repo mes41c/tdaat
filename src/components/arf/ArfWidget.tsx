@@ -25,10 +25,14 @@ export function ArfWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Hide on pages where the floating button overlaps dense mobile content
-  const hidden =
-    location.pathname.startsWith("/arf") ||
-    location.pathname.startsWith("/auth") ||
-    location.pathname.startsWith("/turk-dunyasi");
+  const browserPath = typeof window !== "undefined" ? window.location.pathname : "";
+  const hiddenPaths = [location.pathname, browserPath];
+  const hidden = hiddenPaths.some(
+    (path) =>
+      path.startsWith("/arf") ||
+      path.startsWith("/auth") ||
+      path.startsWith("/turk-dunyasi"),
+  );
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
