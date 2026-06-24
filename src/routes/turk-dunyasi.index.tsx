@@ -87,6 +87,7 @@ function TurkDunyasiPage() {
       <div className="mt-10">
         {activeTab === "news" && (
           <>
+            <LiveNewsSection />
             <NewsGrid />
             <CalendarPreview />
           </>
@@ -94,6 +95,7 @@ function TurkDunyasiPage() {
         {activeTab === "culture" && <CultureGrid />}
         {activeTab === "academic" && <AcademicGrid />}
       </div>
+
 
 
       {/* Info box */}
