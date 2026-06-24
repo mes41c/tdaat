@@ -14,6 +14,7 @@ type Feed = {
   source: string;
   country: string;
   url: string;
+  requireKeyword?: boolean;
 };
 
 // Curated RSS endpoints for each requested agency. If any feed is unreachable
