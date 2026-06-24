@@ -19,15 +19,15 @@ type Feed = {
 // Curated RSS endpoints for each requested agency. If any feed is unreachable
 // or returns invalid XML, it is silently skipped so the rest still render.
 const FEEDS: Feed[] = [
-  { source: "Anadolu Ajansı", country: "TR", url: "https://www.aa.com.tr/tr/rss/default?cat=guncel" },
-  { source: "TRT Haber", country: "TR", url: "https://www.trthaber.com/sondakika.rss" },
-  { source: "TRT Avaz", country: "TR", url: "https://www.trtavaz.com.tr/rss/anasayfa/tr" },
-  { source: "AZERTAC", country: "AZ", url: "https://azertag.az/tr/rss" },
-  { source: "Kazinform", country: "KZ", url: "https://www.inform.kz/tr/rss" },
-  { source: "UZA", country: "UZ", url: "https://uza.uz/tr/rss" },
-  { source: "Kabar", country: "KG", url: "https://kabar.kg/tr/rss/" },
-  { source: "TAK", country: "TR", url: "https://www.tak.gov.ct.tr/rss" },
-  { source: "QHA", country: "TR", url: "https://qha.com.tr/rss" },
+  { source: "Anadolu Ajansı", country: "tr", url: "https://www.aa.com.tr/tr/rss/default?cat=guncel" },
+  { source: "TRT Haber", country: "tr", url: "https://www.trthaber.com/sondakika.rss" },
+  { source: "TRT Avaz", country: "tr", url: "https://www.trtavaz.com.tr/rss/anasayfa/tr" },
+  { source: "AZERTAC", country: "az", url: "https://azertag.az/tr/rss" },
+  { source: "Kazinform", country: "kz", url: "https://www.inform.kz/tr/rss" },
+  { source: "UZA", country: "uz", url: "https://uza.uz/tr/rss" },
+  { source: "Kabar", country: "kg", url: "https://kabar.kg/tr/rss/" },
+  { source: "TAK (KKTC)", country: "tr", url: "https://www.tak.gov.ct.tr/rss" },
+  { source: "QHA (Kırım)", country: "tr", url: "https://qha.com.tr/rss" },
 ];
 
 function decode(s: string): string {
