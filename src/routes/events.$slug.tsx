@@ -90,7 +90,7 @@ function EventDetail() {
         {event.category}
       </Badge>
       <h1 className="mt-3 font-[var(--font-heading)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-        {event.title}
+        {event.title} (test)
       </h1>
 
       {event.image && (
