@@ -1,9 +1,8 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Newspaper, BookOpen, GraduationCap, Calendar, Globe, ArrowRight, Tag, MapPin, Radio, ExternalLink, RefreshCw } from "lucide-react";
+import { Newspaper, BookOpen, GraduationCap, Calendar, Globe, ArrowRight, Tag, MapPin, Radio, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { FlagIcon } from "@/components/FlagIcon";
 import { CultureIcon } from "@/components/CultureIcon";
 import { newsItems, cultureItems, academicItems } from "@/lib/turk-dunya-data";
@@ -300,7 +299,6 @@ function formatRelative(iso: string): string {
 
 function LiveNewsSection() {
   const [source, setSource] = useState<string>("all");
-  const [selected, setSelected] = useState<LiveNewsItem | null>(null);
   const { data, isLoading, isFetching, refetch, error } = useQuery({
     queryKey: ["turk-world-news"],
     queryFn: () => getTurkWorldNews(),
@@ -391,11 +389,11 @@ function LiveNewsSection() {
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {items.slice(0, 24).map((item) => (
-              <button
+              <Link
                 key={item.id}
-                type="button"
-                onClick={() => setSelected(item)}
-                className="group flex flex-col rounded-xl border border-border/60 bg-card p-5 text-left transition-colors duration-200 hover:border-primary/40"
+                to="/turk-dunyasi/haber/canli/$id"
+                params={{ id: item.id }}
+                className="group flex flex-col rounded-xl border border-border/60 bg-card p-5 transition-colors duration-200 hover:border-primary/40"
               >
                 <div className="flex items-center justify-between">
                   <Badge variant="outline" className="text-xs">
@@ -422,49 +420,11 @@ function LiveNewsSection() {
                     <ArrowRight className="h-3 w-3" />
                   </span>
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
         )}
       </div>
-
-      <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-          {selected && (
-            <>
-              <DialogHeader>
-                <div className="flex items-center justify-between gap-2">
-                  <Badge variant="outline" className="text-xs">
-                    <FlagIcon country={selected.country} />
-                    <span className="ml-1">{selected.source}</span>
-                  </Badge>
-                  <span className="text-xs text-muted-foreground">
-                    {formatRelative(selected.pubDate)}
-                  </span>
-                </div>
-                <DialogTitle className="mt-2 text-left font-[var(--font-heading)] text-xl leading-snug">
-                  {selected.title}
-                </DialogTitle>
-                {selected.summary && (
-                  <DialogDescription className="mt-3 text-left text-sm leading-relaxed text-muted-foreground whitespace-pre-line">
-                    {selected.summary}
-                  </DialogDescription>
-                )}
-              </DialogHeader>
-              <div className="mt-4 flex justify-end border-t border-border/60 pt-3">
-                <a
-                  href={selected.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
-                >
-                  Kaynakta tamamını oku <ExternalLink className="h-3 w-3" />
-                </a>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

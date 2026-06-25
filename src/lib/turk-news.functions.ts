@@ -8,6 +8,7 @@ export type LiveNewsItem = {
   source: string;
   country: string; // ISO-ish code used by FlagIcon
   summary?: string;
+  content?: string;
 };
 
 export type SourceStatus = {
@@ -98,6 +99,8 @@ function matchesPolitical(item: LiveNewsItem): boolean {
 function decode(s: string): string {
   return s
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
@@ -105,6 +108,7 @@ function decode(s: string): string {
     .replace(/&apos;/g, "'")
     .replace(/&amp;/g, "&")
     .replace(/<[^>]+>/g, "")
+    .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
 
@@ -134,8 +138,11 @@ function parseRss(xml: string, feed: Feed): LiveNewsItem[] {
       pick(block, "published") ||
       pick(block, "updated") ||
       pick(block, "dc:date");
-    const summary =
+    const rawContent =
       pick(block, "description") || pick(block, "summary") || pick(block, "content");
+    const contentText = rawContent ?? "";
+    const itemSummary = contentText ? contentText.slice(0, 240) : undefined;
+    const itemContent = contentText ? contentText.slice(0, 3000) : undefined;
     if (!title || !link) continue;
     const date = pubRaw ? new Date(pubRaw) : new Date();
     const iso = isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString();
@@ -146,7 +153,8 @@ function parseRss(xml: string, feed: Feed): LiveNewsItem[] {
       pubDate: iso,
       source: feed.source,
       country: feed.country,
-      summary: summary ? summary.slice(0, 240) : undefined,
+      summary: itemSummary,
+      content: itemContent,
     });
   }
   return items;

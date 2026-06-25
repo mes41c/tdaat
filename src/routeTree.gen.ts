@@ -33,6 +33,7 @@ import { Route as TurkDunyasiKulturSlugRouteImport } from './routes/turk-dunyasi
 import { Route as TurkDunyasiHaberSlugRouteImport } from './routes/turk-dunyasi.haber.$slug'
 import { Route as TurkDunyasiAkademikSlugRouteImport } from './routes/turk-dunyasi.akademik.$slug'
 import { Route as AuthenticatedArfThreadIdRouteImport } from './routes/_authenticated/arf.$threadId'
+import { Route as TurkDunyasiHaberCanliIdRouteImport } from './routes/turk-dunyasi.haber.canli.$id'
 
 const UyeOlRoute = UyeOlRouteImport.update({
   id: '/uye-ol',
@@ -154,6 +155,11 @@ const AuthenticatedArfThreadIdRoute =
     path: '/$threadId',
     getParentRoute: () => AuthenticatedArfRoute,
   } as any)
+const TurkDunyasiHaberCanliIdRoute = TurkDunyasiHaberCanliIdRouteImport.update({
+  id: '/turk-dunyasi/haber/canli/$id',
+  path: '/turk-dunyasi/haber/canli/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/turk-dunyasi/haber/$slug': typeof TurkDunyasiHaberSlugRoute
   '/turk-dunyasi/kultur/$slug': typeof TurkDunyasiKulturSlugRoute
   '/arf/': typeof AuthenticatedArfIndexRoute
+  '/turk-dunyasi/haber/canli/$id': typeof TurkDunyasiHaberCanliIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -203,6 +210,7 @@ export interface FileRoutesByTo {
   '/turk-dunyasi/haber/$slug': typeof TurkDunyasiHaberSlugRoute
   '/turk-dunyasi/kultur/$slug': typeof TurkDunyasiKulturSlugRoute
   '/arf': typeof AuthenticatedArfIndexRoute
+  '/turk-dunyasi/haber/canli/$id': typeof TurkDunyasiHaberCanliIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -230,6 +238,7 @@ export interface FileRoutesById {
   '/turk-dunyasi/haber/$slug': typeof TurkDunyasiHaberSlugRoute
   '/turk-dunyasi/kultur/$slug': typeof TurkDunyasiKulturSlugRoute
   '/_authenticated/arf/': typeof AuthenticatedArfIndexRoute
+  '/turk-dunyasi/haber/canli/$id': typeof TurkDunyasiHaberCanliIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/turk-dunyasi/haber/$slug'
     | '/turk-dunyasi/kultur/$slug'
     | '/arf/'
+    | '/turk-dunyasi/haber/canli/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -281,6 +291,7 @@ export interface FileRouteTypes {
     | '/turk-dunyasi/haber/$slug'
     | '/turk-dunyasi/kultur/$slug'
     | '/arf'
+    | '/turk-dunyasi/haber/canli/$id'
   id:
     | '__root__'
     | '/'
@@ -307,6 +318,7 @@ export interface FileRouteTypes {
     | '/turk-dunyasi/haber/$slug'
     | '/turk-dunyasi/kultur/$slug'
     | '/_authenticated/arf/'
+    | '/turk-dunyasi/haber/canli/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -329,6 +341,7 @@ export interface RootRouteChildren {
   TurkDunyasiAkademikSlugRoute: typeof TurkDunyasiAkademikSlugRoute
   TurkDunyasiHaberSlugRoute: typeof TurkDunyasiHaberSlugRoute
   TurkDunyasiKulturSlugRoute: typeof TurkDunyasiKulturSlugRoute
+  TurkDunyasiHaberCanliIdRoute: typeof TurkDunyasiHaberCanliIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -501,6 +514,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedArfThreadIdRouteImport
       parentRoute: typeof AuthenticatedArfRoute
     }
+    '/turk-dunyasi/haber/canli/$id': {
+      id: '/turk-dunyasi/haber/canli/$id'
+      path: '/turk-dunyasi/haber/canli/$id'
+      fullPath: '/turk-dunyasi/haber/canli/$id'
+      preLoaderRoute: typeof TurkDunyasiHaberCanliIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -570,6 +590,7 @@ const rootRouteChildren: RootRouteChildren = {
   TurkDunyasiAkademikSlugRoute: TurkDunyasiAkademikSlugRoute,
   TurkDunyasiHaberSlugRoute: TurkDunyasiHaberSlugRoute,
   TurkDunyasiKulturSlugRoute: TurkDunyasiKulturSlugRoute,
+  TurkDunyasiHaberCanliIdRoute: TurkDunyasiHaberCanliIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
