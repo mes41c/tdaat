@@ -85,7 +85,6 @@ function TurkDunyasiPage() {
       <div className="mt-10">
       {activeTab === "news" && (
         <>
-          <LiveNewsSection />
           <NewsGrid />
           <CalendarPreview />
         </>
