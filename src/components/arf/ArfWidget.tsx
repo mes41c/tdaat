@@ -105,7 +105,7 @@ export function ArfWidget() {
         toast.error("Sohbet sıfırlandı, lütfen tekrar dene.");
         return;
       }
-      toast.error(msg || "Bir hata oldu");
+      toast.error("Bir hata oluştu, lütfen tekrar dene.");
     },
   });
 
