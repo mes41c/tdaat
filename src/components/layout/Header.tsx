@@ -7,6 +7,8 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
 import { useIsAdmin } from "@/hooks/use-admin";
+import { useAuthUser } from "@/hooks/use-auth-user";
+
 
 
 export function Header() {
@@ -14,6 +16,8 @@ export function Header() {
   const location = useLocation();
   const { t } = useI18n();
   const { isAdmin } = useIsAdmin();
+  const { user } = useAuthUser();
+
 
 
   const navLinks = [
@@ -74,12 +78,15 @@ export function Header() {
               Yönetim
             </Link>
           )}
-          <Link
-            to="/uye-ol"
-            className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
-          >
-            {t("nav.join")}
-          </Link>
+          {!user && (
+            <Link
+              to="/auth"
+              className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
+            >
+              {t("nav.signIn")}
+            </Link>
+          )}
+
           <LanguageSwitcher />
 
           <ThemeToggle />

@@ -25,7 +25,9 @@ const translations: Record<Lang, Dict> = {
     "nav.contact": "İletişim",
     "nav.toggleMenu": "Menüyü Aç/Kapat",
     "nav.join": "Üye Ol",
+    "nav.signIn": "Giriş Yap",
     "lang.label": "Dil",
+
 
     "footer.tagline": "Üniversite öğrencilerinin öğrenme, üretme ve büyüme yolculuğunda birlikte güçlendikleri bir topluluk.",
     "footer.pages": "Sayfalar",
@@ -77,7 +79,9 @@ const translations: Record<Lang, Dict> = {
     "nav.contact": "Əlaqə",
     "nav.toggleMenu": "Menyunu Aç/Bağla",
     "nav.join": "Üzv ol",
+    "nav.signIn": "Daxil ol",
     "lang.label": "Dil",
+
 
     "footer.tagline": "Universitet tələbələrinin öyrənmə, istehsal və böyümə yolunda birlikdə güclənən bir icma.",
     "footer.pages": "Səhifələr",
@@ -129,7 +133,9 @@ const translations: Record<Lang, Dict> = {
     "nav.contact": "Байланыс",
     "nav.toggleMenu": "Мәзірді ашу/жабу",
     "nav.join": "Мүше болу",
+    "nav.signIn": "Кіру",
     "lang.label": "Тіл",
+
 
     "footer.tagline": "Университет студенттерінің үйрену, өндіру және өсу жолында бірге күшейетін қауымдастығы.",
     "footer.pages": "Беттер",
@@ -181,7 +187,9 @@ const translations: Record<Lang, Dict> = {
     "nav.contact": "Байланыш",
     "nav.toggleMenu": "Менюну ачуу/жабуу",
     "nav.join": "Мүчө болуу",
+    "nav.signIn": "Кирүү",
     "lang.label": "Тил",
+
 
     "footer.tagline": "Университеттин студенттери үйрөнүү, өндүрүү жана өсүү жолунда бирге чыңалган коомчулук.",
     "footer.pages": "Барактар",
@@ -233,7 +241,9 @@ const translations: Record<Lang, Dict> = {
     "nav.contact": "Aloqa",
     "nav.toggleMenu": "Menyuni ochish/yopish",
     "nav.join": "A'zo bo'lish",
+    "nav.signIn": "Kirish",
     "lang.label": "Til",
+
 
     "footer.tagline": "Universitet talabalarining oʻrganish, ishlab chiqarish va oʻsish yoʻlida birgalikda kuchayadigan jamoasi.",
     "footer.pages": "Sahifalar",
@@ -285,7 +295,9 @@ const translations: Record<Lang, Dict> = {
     "nav.contact": "Habarlaşma",
     "nav.toggleMenu": "Menýuny aç/ýap",
     "nav.join": "Agza bol",
+    "nav.signIn": "Girmek",
     "lang.label": "Dil",
+
 
     "footer.tagline": "Uniwersitet talyplarynyň öwrenmek, öndürmek we ösmek ýolunda bilelikde güýçlenýän jemgyýeti.",
     "footer.pages": "Sahypalar",
