@@ -16,7 +16,7 @@ import type { Database } from "@/integrations/supabase/types";
 
 type Row = Database["public"]["Tables"]["blog_posts"]["Row"];
 
-export const Route = createFileRoute("/_admin/blog")({
+export const Route = createFileRoute("/admin/blog")({
   component: AdminBlogPage,
 });
 

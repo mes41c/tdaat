@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Shield } from "lucide-react";
 import logo from "@/assets/logo.png";
 import arfLogo from "@/assets/arf-avatar.png";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
+import { useIsAdmin } from "@/hooks/use-admin";
+
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const { t } = useI18n();
+  const { isAdmin } = useIsAdmin();
+
 
   const navLinks = [
     { to: "/", label: t("nav.home") },
@@ -61,6 +65,15 @@ export function Header() {
 
         {/* Right side */}
         <div className="flex items-center gap-1">
+          {isAdmin && (
+            <Link
+              to="/admin"
+              className="hidden items-center gap-1.5 rounded-md border border-primary/30 bg-primary/5 px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/10 md:inline-flex"
+            >
+              <Shield className="h-4 w-4" />
+              Yönetim
+            </Link>
+          )}
           <Link
             to="/uye-ol"
             className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
@@ -68,6 +81,7 @@ export function Header() {
             {t("nav.join")}
           </Link>
           <LanguageSwitcher />
+
           <ThemeToggle />
           <button
             className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground md:hidden"

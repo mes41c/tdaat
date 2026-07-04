@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Check, X, Clock } from "lucide-react";
 
-export const Route = createFileRoute("/_admin/uyelikler")({
+export const Route = createFileRoute("/admin/uyelikler")({
   component: AdminMembershipsPage,
 });
 
