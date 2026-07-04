@@ -65,6 +65,15 @@ export function Header() {
 
         {/* Right side */}
         <div className="flex items-center gap-1">
+          {isAdmin && (
+            <Link
+              to="/admin"
+              className="hidden items-center gap-1.5 rounded-md border border-primary/30 bg-primary/5 px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/10 md:inline-flex"
+            >
+              <Shield className="h-4 w-4" />
+              Yönetim
+            </Link>
+          )}
           <Link
             to="/uye-ol"
             className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
@@ -72,6 +81,7 @@ export function Header() {
             {t("nav.join")}
           </Link>
           <LanguageSwitcher />
+
           <ThemeToggle />
           <button
             className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground md:hidden"
