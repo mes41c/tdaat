@@ -78,12 +78,15 @@ export function Header() {
               Yönetim
             </Link>
           )}
-          <Link
-            to="/uye-ol"
-            className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
-          >
-            {t("nav.join")}
-          </Link>
+          {!user && (
+            <Link
+              to="/auth"
+              className="hidden rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
+            >
+              {t("nav.signIn")}
+            </Link>
+          )}
+
           <LanguageSwitcher />
 
           <ThemeToggle />
