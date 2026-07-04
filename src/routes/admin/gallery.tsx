@@ -13,7 +13,7 @@ import type { Database } from "@/integrations/supabase/types";
 
 type Row = Database["public"]["Tables"]["gallery_images"]["Row"];
 
-export const Route = createFileRoute("/_admin/gallery")({
+export const Route = createFileRoute("/admin/gallery")({
   component: AdminGalleryPage,
 });
 
