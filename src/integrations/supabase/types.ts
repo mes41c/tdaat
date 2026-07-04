@@ -73,6 +73,57 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_posts: {
+        Row: {
+          author: string
+          category: string
+          content: string
+          cover_url: string | null
+          created_at: string
+          created_by: string | null
+          date_label: string
+          excerpt: string
+          id: string
+          published_at: string
+          reading_time: string
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author: string
+          category: string
+          content: string
+          cover_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_label: string
+          excerpt: string
+          id?: string
+          published_at?: string
+          reading_time?: string
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          category?: string
+          content?: string
+          cover_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_label?: string
+          excerpt?: string
+          id?: string
+          published_at?: string
+          reading_time?: string
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       event_registrations: {
         Row: {
           created_at: string
@@ -103,6 +154,96 @@ export type Database = {
           id?: string
           notes?: string | null
           phone?: string | null
+        }
+        Relationships: []
+      }
+      events: {
+        Row: {
+          category: string
+          created_at: string
+          created_by: string | null
+          date_label: string
+          description: string
+          end_date: string
+          id: string
+          image_url: string | null
+          is_upcoming: boolean
+          location: string
+          long_description: string
+          slug: string
+          start_date: string
+          time_label: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          created_by?: string | null
+          date_label: string
+          description: string
+          end_date: string
+          id?: string
+          image_url?: string | null
+          is_upcoming?: boolean
+          location: string
+          long_description: string
+          slug: string
+          start_date: string
+          time_label?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          date_label?: string
+          description?: string
+          end_date?: string
+          id?: string
+          image_url?: string | null
+          is_upcoming?: boolean
+          location?: string
+          long_description?: string
+          slug?: string
+          start_date?: string
+          time_label?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      gallery_images: {
+        Row: {
+          caption: string
+          created_at: string
+          created_by: string | null
+          id: string
+          image_url: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          caption?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          image_url: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          caption?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          image_url?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -142,6 +283,54 @@ export type Database = {
           phone?: string | null
           status?: string
           year?: string | null
+        }
+        Relationships: []
+      }
+      news_items: {
+        Row: {
+          category: string
+          content: string[]
+          country: string
+          created_at: string
+          created_by: string | null
+          date_label: string
+          flag: string
+          id: string
+          slug: string
+          source: string
+          summary: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          content?: string[]
+          country: string
+          created_at?: string
+          created_by?: string | null
+          date_label: string
+          flag: string
+          id?: string
+          slug: string
+          source: string
+          summary: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          content?: string[]
+          country?: string
+          created_at?: string
+          created_by?: string | null
+          date_label?: string
+          flag?: string
+          id?: string
+          slug?: string
+          source?: string
+          summary?: string
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
