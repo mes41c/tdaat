@@ -13,6 +13,8 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const { t } = useI18n();
+  const { isAdmin } = useIsAdmin();
+
 
   const navLinks = [
     { to: "/", label: t("nav.home") },
