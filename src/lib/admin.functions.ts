@@ -47,7 +47,7 @@ export const upsertEvent = createServerFn({ method: "POST" })
     values: eventInput.parse(d.values),
   }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     if (data.id) {
       const { error } = await context.supabase
         .from("events")
@@ -69,7 +69,7 @@ export const deleteEvent = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { id: string }) => ({ id: z.string().uuid().parse(d.id) }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     const { error } = await context.supabase.from("events").delete().eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
@@ -95,7 +95,7 @@ export const upsertBlogPost = createServerFn({ method: "POST" })
     values: blogInput.parse(d.values),
   }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     if (data.id) {
       const { error } = await context.supabase
         .from("blog_posts")
@@ -117,7 +117,7 @@ export const deleteBlogPost = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { id: string }) => ({ id: z.string().uuid().parse(d.id) }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     const { error } = await context.supabase.from("blog_posts").delete().eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
@@ -143,7 +143,7 @@ export const upsertNews = createServerFn({ method: "POST" })
     values: newsInput.parse(d.values),
   }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     if (data.id) {
       const { error } = await context.supabase
         .from("news_items")
@@ -165,7 +165,7 @@ export const deleteNews = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { id: string }) => ({ id: z.string().uuid().parse(d.id) }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     const { error } = await context.supabase.from("news_items").delete().eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
@@ -186,7 +186,7 @@ export const upsertGalleryImage = createServerFn({ method: "POST" })
     values: galleryInput.parse(d.values),
   }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     if (data.id) {
       const { error } = await context.supabase
         .from("gallery_images")
@@ -208,7 +208,7 @@ export const deleteGalleryImage = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { id: string }) => ({ id: z.string().uuid().parse(d.id) }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     const { error } = await context.supabase.from("gallery_images").delete().eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
@@ -218,7 +218,7 @@ export const deleteGalleryImage = createServerFn({ method: "POST" })
 export const listMemberships = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     const { data, error } = await context.supabase
       .from("membership_applications")
       .select("*")
@@ -234,7 +234,7 @@ export const updateMembershipStatus = createServerFn({ method: "POST" })
     status: z.enum(["pending", "approved", "rejected"]).parse(d.status),
   }))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.supabase as SB, context.userId);
+    await assertAdmin(context as unknown as Ctx);
     const { error } = await context.supabase
       .from("membership_applications")
       .update({ status: data.status })
