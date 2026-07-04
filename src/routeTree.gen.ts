@@ -19,14 +19,21 @@ import { Route as DestekOlRouteImport } from './routes/destek-ol'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TurkDunyasiIndexRouteImport } from './routes/turk-dunyasi.index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as EventsSlugRouteImport } from './routes/events.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiTtsRouteImport } from './routes/api/tts'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AdminUyeliklerRouteImport } from './routes/admin/uyelikler'
+import { Route as AdminNewsRouteImport } from './routes/admin/news'
+import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
+import { Route as AdminEventsRouteImport } from './routes/admin/events'
+import { Route as AdminBlogRouteImport } from './routes/admin/blog'
 import { Route as AuthenticatedArfRouteImport } from './routes/_authenticated/arf'
 import { Route as AuthenticatedArfIndexRouteImport } from './routes/_authenticated/arf.index'
 import { Route as TurkDunyasiKulturSlugRouteImport } from './routes/turk-dunyasi.kultur.$slug'
@@ -84,6 +91,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -102,6 +114,11 @@ const TurkDunyasiIndexRoute = TurkDunyasiIndexRouteImport.update({
   id: '/turk-dunyasi/',
   path: '/turk-dunyasi/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
 } as any)
 const EventsSlugRoute = EventsSlugRouteImport.update({
   id: '/$slug',
@@ -122,6 +139,31 @@ const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUyeliklerRoute = AdminUyeliklerRouteImport.update({
+  id: '/uyelikler',
+  path: '/uyelikler',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNewsRoute = AdminNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEventsRoute = AdminEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AdminRoute,
 } as any)
 const AuthenticatedArfRoute = AuthenticatedArfRouteImport.update({
   id: '/arf',
@@ -158,6 +200,7 @@ const AuthenticatedArfThreadIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
@@ -169,10 +212,16 @@ export interface FileRoutesByFullPath {
   '/team': typeof TeamRoute
   '/uye-ol': typeof UyeOlRoute
   '/arf': typeof AuthenticatedArfRouteWithChildren
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/news': typeof AdminNewsRoute
+  '/admin/uyelikler': typeof AdminUyeliklerRoute
   '/api/chat': typeof ApiChatRoute
   '/api/tts': typeof ApiTtsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/turk-dunyasi/': typeof TurkDunyasiIndexRoute
   '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
   '/turk-dunyasi/akademik/$slug': typeof TurkDunyasiAkademikSlugRoute
@@ -193,10 +242,16 @@ export interface FileRoutesByTo {
   '/takvim': typeof TakvimRoute
   '/team': typeof TeamRoute
   '/uye-ol': typeof UyeOlRoute
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/news': typeof AdminNewsRoute
+  '/admin/uyelikler': typeof AdminUyeliklerRoute
   '/api/chat': typeof ApiChatRoute
   '/api/tts': typeof ApiTtsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/turk-dunyasi': typeof TurkDunyasiIndexRoute
   '/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
   '/turk-dunyasi/akademik/$slug': typeof TurkDunyasiAkademikSlugRoute
@@ -209,6 +264,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
@@ -220,10 +276,16 @@ export interface FileRoutesById {
   '/team': typeof TeamRoute
   '/uye-ol': typeof UyeOlRoute
   '/_authenticated/arf': typeof AuthenticatedArfRouteWithChildren
+  '/admin/blog': typeof AdminBlogRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/news': typeof AdminNewsRoute
+  '/admin/uyelikler': typeof AdminUyeliklerRoute
   '/api/chat': typeof ApiChatRoute
   '/api/tts': typeof ApiTtsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/events/$slug': typeof EventsSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/turk-dunyasi/': typeof TurkDunyasiIndexRoute
   '/_authenticated/arf/$threadId': typeof AuthenticatedArfThreadIdRoute
   '/turk-dunyasi/akademik/$slug': typeof TurkDunyasiAkademikSlugRoute
@@ -236,6 +298,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/auth'
     | '/blog'
     | '/contact'
@@ -247,10 +310,16 @@ export interface FileRouteTypes {
     | '/team'
     | '/uye-ol'
     | '/arf'
+    | '/admin/blog'
+    | '/admin/events'
+    | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/uyelikler'
     | '/api/chat'
     | '/api/tts'
     | '/blog/$slug'
     | '/events/$slug'
+    | '/admin/'
     | '/turk-dunyasi/'
     | '/arf/$threadId'
     | '/turk-dunyasi/akademik/$slug'
@@ -271,10 +340,16 @@ export interface FileRouteTypes {
     | '/takvim'
     | '/team'
     | '/uye-ol'
+    | '/admin/blog'
+    | '/admin/events'
+    | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/uyelikler'
     | '/api/chat'
     | '/api/tts'
     | '/blog/$slug'
     | '/events/$slug'
+    | '/admin'
     | '/turk-dunyasi'
     | '/arf/$threadId'
     | '/turk-dunyasi/akademik/$slug'
@@ -286,6 +361,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/about'
+    | '/admin'
     | '/auth'
     | '/blog'
     | '/contact'
@@ -297,10 +373,16 @@ export interface FileRouteTypes {
     | '/team'
     | '/uye-ol'
     | '/_authenticated/arf'
+    | '/admin/blog'
+    | '/admin/events'
+    | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/uyelikler'
     | '/api/chat'
     | '/api/tts'
     | '/blog/$slug'
     | '/events/$slug'
+    | '/admin/'
     | '/turk-dunyasi/'
     | '/_authenticated/arf/$threadId'
     | '/turk-dunyasi/akademik/$slug'
@@ -313,6 +395,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AuthRoute: typeof AuthRoute
   BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
@@ -403,6 +486,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -431,6 +521,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TurkDunyasiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/events/$slug': {
       id: '/events/$slug'
       path: '/$slug'
@@ -458,6 +555,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/chat'
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/uyelikler': {
+      id: '/admin/uyelikler'
+      path: '/uyelikler'
+      fullPath: '/admin/uyelikler'
+      preLoaderRoute: typeof AdminUyeliklerRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/news': {
+      id: '/admin/news'
+      path: '/news'
+      fullPath: '/admin/news'
+      preLoaderRoute: typeof AdminNewsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/gallery': {
+      id: '/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/events': {
+      id: '/admin/events'
+      path: '/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof AdminEventsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/_authenticated/arf': {
       id: '/_authenticated/arf'
@@ -529,6 +661,26 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
+interface AdminRouteChildren {
+  AdminBlogRoute: typeof AdminBlogRoute
+  AdminEventsRoute: typeof AdminEventsRoute
+  AdminGalleryRoute: typeof AdminGalleryRoute
+  AdminNewsRoute: typeof AdminNewsRoute
+  AdminUyeliklerRoute: typeof AdminUyeliklerRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminBlogRoute: AdminBlogRoute,
+  AdminEventsRoute: AdminEventsRoute,
+  AdminGalleryRoute: AdminGalleryRoute,
+  AdminNewsRoute: AdminNewsRoute,
+  AdminUyeliklerRoute: AdminUyeliklerRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 interface BlogRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
 }
@@ -554,6 +706,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   AuthRoute: AuthRoute,
   BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
