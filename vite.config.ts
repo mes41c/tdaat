@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Set Vite base from `VITE_BASE` env var so GitHub Actions can build for Pages.
+  // Example: VITE_BASE=/repo-name/ for repo pages, or `/` for user/org pages or custom domain.
+  vite: { base: process.env.VITE_BASE || "/" },
 });
