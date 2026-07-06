@@ -1,18 +1,15 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, nitro (build-only using cloudflare as a default target),
-//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
-//     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
+  plugins: [react()],
+  // ÖNEMLİ: Eğer projeyi bir alt dizinde (örn: github.com/kullanici/kubitet-web) 
+  // yayınlayacaksan repo adını buraya yazmalısın: base: '/kubitet-web/'
+  // Kendi özel domainini bağlayacaksan base ayarını '/' olarak bırakabilirsin.
+  base: "./", 
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+    sourcemap: false, // Üretim ortamında kaynak kodlarının okunmasını zorlaştırır
   },
-  // Set Vite base from `VITE_BASE` env var so GitHub Actions can build for Pages.
-  // Example: VITE_BASE=/repo-name/ for repo pages, or `/` for user/org pages or custom domain.
-  vite: { base: process.env.VITE_BASE || "/" },
 });
