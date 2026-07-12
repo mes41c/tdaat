@@ -1,10 +1,10 @@
-import { createFileRoute, Outlet, useNavigate, useRouterState, Link } from "@tanstack/react-router"; // KRİTİK FİX: Link importu eklendi
+import { createFileRoute, Outlet, Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { CalendarDays, FileText, Newspaper, Images, Users, LayoutDashboard, Shield, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
-  ssr: false, // Admin panelini SSR döngüsünden tamamen koparıp saf SPA yapıyoruz.
+  ssr: false, // Admin panelini sunucu taraflı render (SSR) döngüsünden tamamen koparıyoruz.
   component: AdminLayout,
 });
 
@@ -22,65 +22,85 @@ function AdminLayout() {
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   
-  const [mounted, setMounted] = useState(false);
-  const [checking, setChecking] = useState(true);
-  const [authorized, setAuthorized] = useState(false);
-
-  // Hydration dondurmasını engellemek için tarayıcı kontrolü
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Durum makinesi: loading -> authorized VEYA unauthorized
+  const [status, setStatus] = useState<"loading" | "authorized" | "unauthorized">("loading");
 
   useEffect(() => {
-    if (!mounted) return;
+    let isMounted = true;
 
-    async function checkAdminSession() {
+    async function verifyAdminSession() {
       try {
-        // En güncel lokal oturumu çek
-        const { data: { session } } = await supabase.auth.getSession();
+        // 1. Supabase'in yerel hafızadaki oturumu okumasını bekliyoruz (F5 kilitlenmesini çözer)
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
         
-        if (!session) {
-          navigate({ to: "/auth", replace: true });
+        if (sessionError || !session) {
+          if (isMounted) {
+            setStatus("unauthorized");
+            navigate({ to: "/auth", replace: true });
+          }
           return;
         }
 
-        // Kullanıcının admin rolünü veritabanından doğrula
-        const { data: role } = await supabase
+        // 2. Kullanıcının admin rolünü veritabanından çekiyoruz
+        const { data: roleData, error: roleError } = await supabase
           .from("user_roles")
           .select("role")
           .eq("user_id", session.user.id)
           .eq("role", "admin")
           .maybeSingle();
 
-        if (!role) {
-          navigate({ to: "/", replace: true });
+        if (roleError || !roleData) {
+          if (isMounted) {
+            setStatus("unauthorized");
+            navigate({ to: "/", replace: true });
+          }
           return;
         }
 
-        setAuthorized(true);
+        // Her şey eksiksiz doğrulandı, geçiş izni verildi
+        if (isMounted) {
+          setStatus("authorized");
+        }
       } catch (err) {
-        console.error("Doğrulama hatası:", err);
-        navigate({ to: "/", replace: true });
-      } finally {
-        setChecking(false);
+        console.error("Mimarî doğrulama hatası:", err);
+        if (isMounted) {
+          setStatus("unauthorized");
+          navigate({ to: "/", replace: true });
+        }
       }
     }
 
-    checkAdminSession();
-  }, [mounted, navigate]);
+    verifyAdminSession();
 
-  if (!mounted) return null;
+    // Zaman aşımı sigortası (Failsafe Timeout): Ağ takılırsa sistemi beyaz ekranda sonsuza kadar kilitlemez
+    const timeout = setTimeout(() => {
+      if (status === "loading" && isMounted) {
+        supabase.auth.getUser().then(({ data }) => {
+          if (!data.user && isMounted) {
+            setStatus("unauthorized");
+            navigate({ to: "/auth", replace: true });
+          }
+        });
+      }
+    }, 1500);
 
-  if (checking) {
+    return () => {
+      isMounted = false;
+      clearTimeout(timeout);
+    };
+  }, [navigate]);
+
+  // Yükleme ekranı
+  if (status === "loading") {
     return (
       <div className="flex h-[60vh] w-full flex-col items-center justify-center gap-3 text-sm text-muted-foreground">
         <Loader2 className="h-6 w-6 animate-spin text-primary" />
-        <span>Güvenli yönetim oturumu kuruluyor...</span>
+        <span>Güvenli yönetim oturumu doğrulanıyor...</span>
       </div>
     );
   }
 
-  if (!authorized) return null;
+  if (status === "unauthorized") return null;
 
   return (
     <div className="mx-auto flex min-h-[calc(100vh-8rem)] w-full max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:px-8">
@@ -110,7 +130,9 @@ function AdminLayout() {
         </nav>
       </aside>
       <main className="min-w-0 flex-1">
-        {/* Sadece yetki verildikten sonra Outlet açılır, alt bileşenler sorunsuz render olur */}
+        {/* KRİTİK GÜVENLİK FİXİ: Outlet sadece 'authorized' olunca ekrana basılır.
+            Böylece alt sayfaların useQuery sorguları, Supabase oturumu %100 hazır olmadan tetiklenemez.
+            Bu sayede RLS asla boşa düşmez ve veriler inatla '0' görünmez! */}
         <Outlet />
       </main>
     </div>
