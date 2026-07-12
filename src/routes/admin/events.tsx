@@ -1,4 +1,3 @@
-// src/routes/admin/events.tsx
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -7,6 +6,7 @@ import { Calendar, MapPin, Clock, Plus, Edit, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Database } from "@/integrations/supabase/types";
+import { useEffect } from "react";
 
 type EventRow = Database["public"]["Tables"]["events"]["Row"];
 
@@ -17,15 +17,25 @@ export const Route = createFileRoute("/admin/events")({
 
 function AdminEventsPage() {
   const { isReady } = useAuth();
+  console.log('[AdminEventsPage] isReady:', isReady);
+
+  useEffect(() => {
+    console.log('[AdminEventsPage] isReady değişti:', isReady);
+  }, [isReady]);
 
   const { data: events = [], isLoading } = useQuery({
     queryKey: ["admin-events"],
     queryFn: async () => {
+      console.log('[AdminEventsPage] useQuery queryFn çalışıyor (isReady true)');
       const { data, error } = await supabase
         .from("events")
         .select("*")
         .order("start_date", { ascending: false });
-      if (error) throw error;
+      if (error) {
+        console.error('[AdminEventsPage] Supabase sorgu hatası:', error);
+        throw error;
+      }
+      console.log('[AdminEventsPage] events geldi, adet:', data?.length);
       return data as EventRow[];
     },
     enabled: isReady,

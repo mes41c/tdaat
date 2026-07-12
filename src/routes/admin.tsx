@@ -1,4 +1,3 @@
-// src/routes/admin.tsx
 import { createFileRoute, Outlet, Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,12 +25,22 @@ function AdminLayout() {
   const [status, setStatus] = useState<"loading" | "authorized" | "unauthorized">("loading");
 
   useEffect(() => {
+    console.log('[AdminLayout] useEffect çalıştı, status:', status);
     let isMounted = true;
 
     async function verifyAdmin() {
+      console.log('[AdminLayout] verifyAdmin başladı');
       try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
+        console.log('[AdminLayout] supabase.auth.getSession() çağrılıyor...');
+        const { data, error } = await supabase.auth.getSession();
+        console.log('[AdminLayout] getSession sonucu:', { data, error });
+
+        if (error) {
+          console.error('[AdminLayout] getSession hatası:', error);
+        }
+
+        if (!data.session) {
+          console.warn('[AdminLayout] Oturum yok, unauthorized');
           if (isMounted) {
             setStatus("unauthorized");
             navigate({ to: "/auth", replace: true });
@@ -39,14 +48,25 @@ function AdminLayout() {
           return;
         }
 
-        const { data: roleData } = await supabase
+        console.log('[AdminLayout] Oturum mevcut, user_id:', data.session.user.id);
+
+        // Admin rolünü kontrol et
+        console.log('[AdminLayout] user_roles sorgulanıyor...');
+        const { data: roleData, error: roleError } = await supabase
           .from("user_roles")
           .select("role")
-          .eq("user_id", session.user.id)
+          .eq("user_id", data.session.user.id)
           .eq("role", "admin")
           .maybeSingle();
 
+        console.log('[AdminLayout] user_roles sonucu:', { roleData, roleError });
+
+        if (roleError) {
+          console.error('[AdminLayout] user_roles sorgu hatası:', roleError);
+        }
+
         if (!roleData) {
+          console.warn('[AdminLayout] Admin rolü bulunamadı, unauthorized');
           if (isMounted) {
             setStatus("unauthorized");
             navigate({ to: "/", replace: true });
@@ -54,8 +74,10 @@ function AdminLayout() {
           return;
         }
 
+        console.log('[AdminLayout] Admin rolü doğrulandı, authorized');
         if (isMounted) setStatus("authorized");
-      } catch {
+      } catch (err) {
+        console.error('[AdminLayout] verifyAdmin beklenmedik hata:', err);
         if (isMounted) {
           setStatus("unauthorized");
           navigate({ to: "/", replace: true });
@@ -65,18 +87,24 @@ function AdminLayout() {
 
     verifyAdmin();
 
-    const { data: listener } = supabase.auth.onAuthStateChange((event) => {
+    // Oturum değişikliklerini dinle (güvenlik ağı)
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('[AdminLayout] onAuthStateChange event:', event, 'session:', session);
       if (event === "SIGNED_OUT" && isMounted) {
+        console.warn('[AdminLayout] SIGNED_OUT yakalandı, unauthorized');
         setStatus("unauthorized");
         navigate({ to: "/auth", replace: true });
       }
     });
 
     return () => {
+      console.log('[AdminLayout] cleanup');
       isMounted = false;
       listener?.subscription.unsubscribe();
     };
   }, [navigate]);
+
+  console.log('[AdminLayout] render, status:', status);
 
   if (status === "loading") {
     return (
@@ -87,8 +115,12 @@ function AdminLayout() {
     );
   }
 
-  if (status === "unauthorized") return null;
+  if (status === "unauthorized") {
+    console.warn('[AdminLayout] unauthorized render, null döndü');
+    return null;
+  }
 
+  console.log('[AdminLayout] authorized render, AuthProvider içinde Outlet');
   return (
     <AuthProvider>
       <div className="mx-auto flex min-h-[calc(100vh-8rem)] w-full max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:px-8">

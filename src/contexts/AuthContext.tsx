@@ -16,21 +16,45 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    console.log('[AuthProvider] useEffect çalıştı');
+    let isMounted = true;
+
     // 1. Mevcut oturumu al
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setIsReady(true);
-    });
+    supabase.auth.getSession()
+      .then(({ data, error }) => {
+        console.log('[AuthProvider] getSession cevabı:', { data, error });
+        if (error) {
+          console.error('[AuthProvider] getSession hatası:', error);
+        }
+        if (isMounted) {
+          setSession(data.session);
+          setUser(data.session?.user ?? null);
+          setIsReady(true);
+          console.log('[AuthProvider] isReady true oldu, session:', data.session);
+        }
+      })
+      .catch((err) => {
+        console.error('[AuthProvider] getSession beklenmedik hata:', err);
+        if (isMounted) {
+          setIsReady(true); // Hata olsa da ready yapalım ki sonsuz döngü olmasın
+        }
+      });
 
     // 2. Oturum değişikliklerini dinle
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setIsReady(true);
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('[AuthProvider] onAuthStateChange event:', event, 'session:', session);
+      if (isMounted) {
+        setSession(session);
+        setUser(session?.user ?? null);
+        setIsReady(true);
+      }
     });
 
-    return () => listener?.subscription.unsubscribe();
+    return () => {
+      console.log('[AuthProvider] cleanup');
+      isMounted = false;
+      listener?.subscription.unsubscribe();
+    };
   }, []);
 
   return (
