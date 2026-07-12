@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Users, Lightbulb, ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import { useI18n } from "@/lib/i18n";
+import { useQuery } from "@tanstack/react-query"; // Importu unutma
+import { supabase } from "@/integrations/supabase/client"; // Importu unutma
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,8 +53,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const upcomingEvents = upcomingEventsData.slice(0, 3);
-
 const teamPreview = [
   { name: "Muharrem Turgut", role: "Başkan", initial: "MT" },
   { name: "Abdurrahman Gülle", role: "Başkan Yardımcısı", initial: "AG" },
@@ -70,11 +70,11 @@ function Index() {
       const { data, error } = await supabase
         .from("events")
         .select("*")
-        .eq("is_upcoming", true) // Sadece yaklaşanları al
+        .eq("is_upcoming", true)
         .order("start_date", { ascending: true })
         .limit(3);
       if (error) throw error;
-      return data;
+      return data ?? [];
     },
   });
 
