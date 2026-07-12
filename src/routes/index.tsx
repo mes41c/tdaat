@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Users, Lightbulb, ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import { useI18n } from "@/lib/i18n";
-import { upcomingEvents as upcomingEventsData } from "@/lib/events-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -63,6 +62,22 @@ const teamPreview = [
 
 function Index() {
   const { t } = useI18n();
+
+  // Veritabanından etkinlikleri çek
+  const { data: upcomingEvents = [] } = useQuery({
+    queryKey: ["homepage-events"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .eq("is_upcoming", true) // Sadece yaklaşanları al
+        .order("start_date", { ascending: true })
+        .limit(3);
+      if (error) throw error;
+      return data;
+    },
+  });
+
   const features = [
     { icon: Lightbulb, title: t("home.feat1.title"), description: t("home.feat1.desc") },
     { icon: Calendar, title: t("home.feat2.title"), description: t("home.feat2.desc") },
